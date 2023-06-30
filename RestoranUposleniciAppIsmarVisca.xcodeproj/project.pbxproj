@@ -7,19 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE3CC1852A4F218100FAF792 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CC1842A4F218100FAF792 /* FirstViewController.swift */; };
+		CE3CC1872A4F219100FAF792 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CC1862A4F219100FAF792 /* LogInViewController.swift */; };
+		CE3CC1892A4F219D00FAF792 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CC1882A4F219D00FAF792 /* SignUpViewController.swift */; };
+		CE3CC18B2A4F271800FAF792 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE3CC18A2A4F271700FAF792 /* GoogleService-Info.plist */; };
 		CEA38B7C2A4B430600815518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7B2A4B430600815518 /* AppDelegate.swift */; };
 		CEA38B7E2A4B430600815518 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7D2A4B430600815518 /* SceneDelegate.swift */; };
-		CEA38B802A4B430600815518 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7F2A4B430600815518 /* ViewController.swift */; };
 		CEA38B832A4B430600815518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA38B812A4B430600815518 /* Main.storyboard */; };
 		CEA38B852A4B430800815518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA38B842A4B430800815518 /* Assets.xcassets */; };
 		CEA38B882A4B430800815518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA38B862A4B430800815518 /* LaunchScreen.storyboard */; };
+		CECF9ACA2A4F121B00F2EFD1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CECF9AC92A4F121B00F2EFD1 /* FirebaseAuth */; };
+		CECF9ACC2A4F121B00F2EFD1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CECF9ACB2A4F121B00F2EFD1 /* FirebaseFirestore */; };
+		CECF9ACE2A4F121B00F2EFD1 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CECF9ACD2A4F121B00F2EFD1 /* FirebaseFirestoreSwift */; };
+		CECF9AD12A4F127800F2EFD1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CECF9AD02A4F127800F2EFD1 /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE3CC1842A4F218100FAF792 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		CE3CC1862A4F219100FAF792 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		CE3CC1882A4F219D00FAF792 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		CE3CC18A2A4F271700FAF792 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEA38B782A4B430600815518 /* RestoranUposleniciAppIsmarVisca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestoranUposleniciAppIsmarVisca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA38B7B2A4B430600815518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEA38B7D2A4B430600815518 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CEA38B7F2A4B430600815518 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CEA38B822A4B430600815518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CEA38B842A4B430800815518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEA38B872A4B430800815518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -31,12 +41,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CECF9ACA2A4F121B00F2EFD1 /* FirebaseAuth in Frameworks */,
+				CECF9AD12A4F127800F2EFD1 /* IQKeyboardManagerSwift in Frameworks */,
+				CECF9ACC2A4F121B00F2EFD1 /* FirebaseFirestore in Frameworks */,
+				CECF9ACE2A4F121B00F2EFD1 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE3CC1822A4F214100FAF792 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CE3CC1842A4F218100FAF792 /* FirstViewController.swift */,
+				CE3CC1862A4F219100FAF792 /* LogInViewController.swift */,
+				CE3CC1882A4F219D00FAF792 /* SignUpViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE3CC1832A4F215000FAF792 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CEA38B812A4B430600815518 /* Main.storyboard */,
+				CEA38B862A4B430800815518 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CEA38B6F2A4B430600815518 = {
 			isa = PBXGroup;
 			children = (
@@ -56,13 +89,13 @@
 		CEA38B7A2A4B430600815518 /* RestoranUposleniciAppIsmarVisca */ = {
 			isa = PBXGroup;
 			children = (
+				CE3CC1822A4F214100FAF792 /* Controllers */,
 				CEA38B7B2A4B430600815518 /* AppDelegate.swift */,
 				CEA38B7D2A4B430600815518 /* SceneDelegate.swift */,
-				CEA38B7F2A4B430600815518 /* ViewController.swift */,
-				CEA38B812A4B430600815518 /* Main.storyboard */,
+				CE3CC1832A4F215000FAF792 /* Views */,
 				CEA38B842A4B430800815518 /* Assets.xcassets */,
-				CEA38B862A4B430800815518 /* LaunchScreen.storyboard */,
 				CEA38B892A4B430800815518 /* Info.plist */,
+				CE3CC18A2A4F271700FAF792 /* GoogleService-Info.plist */,
 			);
 			path = RestoranUposleniciAppIsmarVisca;
 			sourceTree = "<group>";
@@ -83,6 +116,12 @@
 			dependencies = (
 			);
 			name = RestoranUposleniciAppIsmarVisca;
+			packageProductDependencies = (
+				CECF9AC92A4F121B00F2EFD1 /* FirebaseAuth */,
+				CECF9ACB2A4F121B00F2EFD1 /* FirebaseFirestore */,
+				CECF9ACD2A4F121B00F2EFD1 /* FirebaseFirestoreSwift */,
+				CECF9AD02A4F127800F2EFD1 /* IQKeyboardManagerSwift */,
+			);
 			productName = RestoranUposleniciAppIsmarVisca;
 			productReference = CEA38B782A4B430600815518 /* RestoranUposleniciAppIsmarVisca.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +150,10 @@
 				Base,
 			);
 			mainGroup = CEA38B6F2A4B430600815518;
+			packageReferences = (
+				CECF9AC82A4F121B00F2EFD1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				CECF9ACF2A4F127800F2EFD1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = CEA38B792A4B430600815518 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA38B882A4B430800815518 /* LaunchScreen.storyboard in Resources */,
+				CE3CC18B2A4F271800FAF792 /* GoogleService-Info.plist in Resources */,
 				CEA38B852A4B430800815518 /* Assets.xcassets in Resources */,
 				CEA38B832A4B430600815518 /* Main.storyboard in Resources */,
 			);
@@ -138,9 +182,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CEA38B802A4B430600815518 /* ViewController.swift in Sources */,
+				CE3CC1892A4F219D00FAF792 /* SignUpViewController.swift in Sources */,
 				CEA38B7C2A4B430600815518 /* AppDelegate.swift in Sources */,
 				CEA38B7E2A4B430600815518 /* SceneDelegate.swift in Sources */,
+				CE3CC1872A4F219100FAF792 /* LogInViewController.swift in Sources */,
+				CE3CC1852A4F218100FAF792 /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,6 +404,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CECF9AC82A4F121B00F2EFD1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		CECF9ACF2A4F127800F2EFD1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CECF9AC92A4F121B00F2EFD1 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CECF9AC82A4F121B00F2EFD1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		CECF9ACB2A4F121B00F2EFD1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CECF9AC82A4F121B00F2EFD1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		CECF9ACD2A4F121B00F2EFD1 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CECF9AC82A4F121B00F2EFD1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		CECF9AD02A4F127800F2EFD1 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CECF9ACF2A4F127800F2EFD1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CEA38B702A4B430600815518 /* Project object */;
 }

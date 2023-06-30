@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>807523374477-755iki8d0k7ggouvqtkc3rrnvesn8lb5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.807523374477-755iki8d0k7ggouvqtkc3rrnvesn8lb5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDpMjVImfiG7hI0boRcQdVkGmAro_0HR1U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>807523374477</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ismar.RestoranUposleniciAppIsmarVisca</string>
+	<key>PROJECT_ID</key>
+	<string>diplomskirad-cfbe2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>diplomskirad-cfbe2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:807523374477:ios:f1bf817ce85566b580d9c4</string>
+</dict>
+</plist>
