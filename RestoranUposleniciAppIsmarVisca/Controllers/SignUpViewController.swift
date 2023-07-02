@@ -9,21 +9,32 @@ import UIKit
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var invalidPasswordAgainLabel: UILabel!
+    @IBOutlet weak var invalidPasswordLabel: UILabel!
+    @IBOutlet weak var invalidAddressLabel: UILabel!
+    @IBOutlet weak var invalidEmailLabel: UILabel!
+    @IBOutlet weak var invalidPhoneNumberLabel: UILabel!
+    @IBOutlet weak var invalidSurnameLabel: UILabel!
+    @IBOutlet weak var invalidNameLabel: UILabel!
+    @IBOutlet weak var passwordAgainTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    @IBOutlet weak var surnameTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        self.hideKeyboardWhenTappedAround()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func signUpPressed(_ sender: UIButton) {
     }
-    */
+    
 
 }

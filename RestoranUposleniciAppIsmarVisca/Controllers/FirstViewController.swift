@@ -11,6 +11,7 @@ class FirstViewController: UIViewController {
 
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var logInButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,9 +19,13 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func logInButtonPressed(_ sender: UIButton) {
+        let controller = LogInViewController.instantiate()
+        navigationController?.pushViewController(controller, animated: true)
     }
     
 
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
+        let controller = SignUpViewController.instantiate()
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
