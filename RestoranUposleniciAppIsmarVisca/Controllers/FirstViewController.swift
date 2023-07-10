@@ -15,7 +15,8 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        signUpButton.layer.cornerRadius = 15
+        logInButton.layer.cornerRadius = 15
     }
     
     @IBAction func logInButtonPressed(_ sender: UIButton) {

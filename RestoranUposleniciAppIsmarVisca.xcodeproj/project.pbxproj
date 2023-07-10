@@ -13,11 +13,16 @@
 		CE3CC1872A4F219100FAF792 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CC1862A4F219100FAF792 /* LogInViewController.swift */; };
 		CE3CC1892A4F219D00FAF792 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CC1882A4F219D00FAF792 /* SignUpViewController.swift */; };
 		CE3CC18B2A4F271800FAF792 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE3CC18A2A4F271700FAF792 /* GoogleService-Info.plist */; };
+		CE5651AC2A5C3A4500F0BAD8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5651AB2A5C3A4500F0BAD8 /* HomeViewController.swift */; };
+		CE5651AE2A5C3A5B00F0BAD8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5651AD2A5C3A5B00F0BAD8 /* ProfileViewController.swift */; };
+		CE5651B12A5C41F000F0BAD8 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CE5651B02A5C41F000F0BAD8 /* Toast */; };
 		CEA38B7C2A4B430600815518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7B2A4B430600815518 /* AppDelegate.swift */; };
 		CEA38B7E2A4B430600815518 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7D2A4B430600815518 /* SceneDelegate.swift */; };
 		CEA38B832A4B430600815518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA38B812A4B430600815518 /* Main.storyboard */; };
 		CEA38B852A4B430800815518 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEA38B842A4B430800815518 /* Assets.xcassets */; };
 		CEA38B882A4B430800815518 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA38B862A4B430800815518 /* LaunchScreen.storyboard */; };
+		CEB1CC762A5B1AB1000267CD /* MyVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1CC752A5B1AB1000267CD /* MyVariables.swift */; };
+		CEB1CC782A5B1B82000267CD /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB1CC772A5B1B82000267CD /* StringExtension.swift */; };
 		CEBB1A042A5048EF003592B6 /* FoodManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBB1A032A5048EF003592B6 /* FoodManager.swift */; };
 		CECF9ACA2A4F121B00F2EFD1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = CECF9AC92A4F121B00F2EFD1 /* FirebaseAuth */; };
 		CECF9ACC2A4F121B00F2EFD1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = CECF9ACB2A4F121B00F2EFD1 /* FirebaseFirestore */; };
@@ -32,6 +37,8 @@
 		CE3CC1862A4F219100FAF792 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		CE3CC1882A4F219D00FAF792 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		CE3CC18A2A4F271700FAF792 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CE5651AB2A5C3A4500F0BAD8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		CE5651AD2A5C3A5B00F0BAD8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CEA38B782A4B430600815518 /* RestoranUposleniciAppIsmarVisca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestoranUposleniciAppIsmarVisca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA38B7B2A4B430600815518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEA38B7D2A4B430600815518 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +46,8 @@
 		CEA38B842A4B430800815518 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEA38B872A4B430800815518 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEA38B892A4B430800815518 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEB1CC752A5B1AB1000267CD /* MyVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVariables.swift; sourceTree = "<group>"; };
+		CEB1CC772A5B1B82000267CD /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		CEBB1A032A5048EF003592B6 /* FoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -50,6 +59,7 @@
 				CECF9ACA2A4F121B00F2EFD1 /* FirebaseAuth in Frameworks */,
 				CECF9AD12A4F127800F2EFD1 /* IQKeyboardManagerSwift in Frameworks */,
 				CECF9ACC2A4F121B00F2EFD1 /* FirebaseFirestore in Frameworks */,
+				CE5651B12A5C41F000F0BAD8 /* Toast in Frameworks */,
 				CECF9ACE2A4F121B00F2EFD1 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -61,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2BF1E72A51E2A300FEEC13 /* UIViewControllerExtension.swift */,
+				CEB1CC772A5B1B82000267CD /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -71,6 +82,8 @@
 				CE3CC1842A4F218100FAF792 /* FirstViewController.swift */,
 				CE3CC1862A4F219100FAF792 /* LogInViewController.swift */,
 				CE3CC1882A4F219D00FAF792 /* SignUpViewController.swift */,
+				CE5651AB2A5C3A4500F0BAD8 /* HomeViewController.swift */,
+				CE5651AD2A5C3A5B00F0BAD8 /* ProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -121,6 +134,7 @@
 			children = (
 				CEBB1A032A5048EF003592B6 /* FoodManager.swift */,
 				CE2BF1E92A51E54400FEEC13 /* User.swift */,
+				CEB1CC752A5B1AB1000267CD /* MyVariables.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -146,6 +160,7 @@
 				CECF9ACB2A4F121B00F2EFD1 /* FirebaseFirestore */,
 				CECF9ACD2A4F121B00F2EFD1 /* FirebaseFirestoreSwift */,
 				CECF9AD02A4F127800F2EFD1 /* IQKeyboardManagerSwift */,
+				CE5651B02A5C41F000F0BAD8 /* Toast */,
 			);
 			productName = RestoranUposleniciAppIsmarVisca;
 			productReference = CEA38B782A4B430600815518 /* RestoranUposleniciAppIsmarVisca.app */;
@@ -178,6 +193,7 @@
 			packageReferences = (
 				CECF9AC82A4F121B00F2EFD1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				CECF9ACF2A4F127800F2EFD1 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				CE5651AF2A5C41F000F0BAD8 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = CEA38B792A4B430600815518 /* Products */;
 			projectDirPath = "";
@@ -209,12 +225,16 @@
 			files = (
 				CE3CC1892A4F219D00FAF792 /* SignUpViewController.swift in Sources */,
 				CEA38B7C2A4B430600815518 /* AppDelegate.swift in Sources */,
+				CEB1CC782A5B1B82000267CD /* StringExtension.swift in Sources */,
 				CEA38B7E2A4B430600815518 /* SceneDelegate.swift in Sources */,
 				CE3CC1872A4F219100FAF792 /* LogInViewController.swift in Sources */,
 				CE2BF1EA2A51E54400FEEC13 /* User.swift in Sources */,
+				CE5651AE2A5C3A5B00F0BAD8 /* ProfileViewController.swift in Sources */,
 				CE3CC1852A4F218100FAF792 /* FirstViewController.swift in Sources */,
+				CE5651AC2A5C3A4500F0BAD8 /* HomeViewController.swift in Sources */,
 				CE2BF1E82A51E2A300FEEC13 /* UIViewControllerExtension.swift in Sources */,
 				CEBB1A042A5048EF003592B6 /* FoodManager.swift in Sources */,
+				CEB1CC762A5B1AB1000267CD /* MyVariables.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +454,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CE5651AF2A5C41F000F0BAD8 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		CECF9AC82A4F121B00F2EFD1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -453,6 +481,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CE5651B02A5C41F000F0BAD8 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE5651AF2A5C41F000F0BAD8 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		CECF9AC92A4F121B00F2EFD1 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CECF9AC82A4F121B00F2EFD1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
