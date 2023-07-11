@@ -6,10 +6,14 @@
 //
 
 import Foundation
+import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 protocol FoodManagerDelegate {
+    func didUpdateUser(_ foodManager: FoodManager)
+    func didDownloadUpdatePicture(_ foodManager: FoodManager)
     func didFetchOrders(_ foodManager: FoodManager)
     func didLogOutUser(_ foodManager: FoodManager)
     func didSignInUser(_ foodManager: FoodManager, user: User?)
@@ -19,6 +23,8 @@ protocol FoodManagerDelegate {
 class FoodManager {
     
     let db = Firestore.firestore()
+    
+    let storage = Storage.storage()
     
     var delegate : FoodManagerDelegate?
     
@@ -31,6 +37,8 @@ class FoodManager {
     var food = [FoodDish]()
     
     var didFetchFoodAlready = false
+    
+    var image = UIImage(named: "defaultProfilePicture")
     
     func fetchFood() {
         self.db.collection("food").getDocuments() { (querySnapshot, err) in
@@ -196,6 +204,75 @@ class FoodManager {
                     }
                     self.delegate?.didFetchOrders(self)
                 }
+        }
+    }
+    
+    func updateUser(name: String, surname: String, phoneNumber: String, address: String) {
+        user = User(name: name, surname: surname, phoneNumber: phoneNumber, email: user!.email, address: address, orderNumber: user!.orderNumber, isCustomer: user!.isCustomer, isEmployee: user!.isEmployee, isAdmin: user!.isAdmin)
+        db.collection("users").whereField("email", isEqualTo: user!.email).getDocuments { (result, error) in
+            if error == nil{
+                let foundUser = self.db.collection("users").document(self.user!.email)
+                foundUser.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        foundUser.updateData([
+                            "name": name,
+                            "surname": surname,
+                            "phoneNumber": phoneNumber,
+                            "address": address
+                        ]) { err in
+                            if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                print("Document successfully updated")
+                                self.delegate?.didUpdateUser(self)
+                            }
+                        }
+                    } else {
+                        print("Document does not exist")
+                    }
+                }
+            }
+        }
+    }
+    
+    func uploadProfilePicture(image: UIImage) {
+        self.image = image
+        let storageRef = storage.reference().child("\(user!.email).png")
+        let imgData = image.pngData()
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/png"
+        storageRef.putData(imgData!, metadata: metaData) { (metadata, error) in
+            if error == nil{
+                self.delegate?.didDownloadUpdatePicture(self)
+            } else {
+                print("error in save image")
+            }
+        }
+    }
+    
+    func uploadDefaultProfilePictureWhenSignUp(_ image: UIImage, _ user2: User) {
+        self.image = image
+        let storageRef = storage.reference().child("\(user!.email).png")
+        let imgData = image.pngData()
+        let metaData = StorageMetadata()
+        metaData.contentType = "image/png"
+        storageRef.putData(imgData!, metadata: metaData) { (metadata, error) in
+            if error == nil{
+                self.delegate?.didSignInUser(self, user: user2)
+            } else {
+                print("error in save image")
+            }
+        }
+    }
+    
+    func getProfilePicture() {
+        let storageRef = storage.reference().child("\(user!.email).png")
+        storageRef.getData(maxSize: 100 * 1024 * 1024) { data, error in
+            if error == nil {
+                let image = UIImage(data: data!)
+                self.image = image!
+                self.delegate?.didDownloadUpdatePicture(self)
+            }
         }
     }
 }

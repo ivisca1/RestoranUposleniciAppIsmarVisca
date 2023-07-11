@@ -50,6 +50,7 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case userCollectionView:
@@ -92,22 +93,15 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
 }
 
 extension HomeViewController : FoodManagerDelegate {
+    
     func didFetchOrders(_ foodManager: FoodManager) {
         waitingOrdersCollectionView.reloadData()
         takenOrdersCollectionView.reloadData()
     }
     
-    func didLogOutUser(_ foodManager: FoodManager) {
-        
-    }
-    
-    func didSignInUser(_ foodManager: FoodManager, user: User?) {
-        
-    }
-    
-    func didFailWithError(error: String) {
-        
-    }
-    
-    
+    func didUpdateUser(_ foodManager: FoodManager) {}
+    func didDownloadUpdatePicture(_ foodManager: FoodManager) {}
+    func didLogOutUser(_ foodManager: FoodManager) {}
+    func didSignInUser(_ foodManager: FoodManager, user: User?) {}
+    func didFailWithError(error: String) {}
 }

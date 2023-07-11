@@ -57,6 +57,8 @@ extension LogInViewController : FoodManagerDelegate {
         }
     }
     
+    func didUpdateUser(_ foodManager: FoodManager) {}
+    func didDownloadUpdatePicture(_ foodManager: FoodManager) {}
     func didFetchOrders(_ foodManager: FoodManager) {}
     func didLogOutUser(_ foodManager: FoodManager) {}
 }

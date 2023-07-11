@@ -57,6 +57,8 @@ extension SignUpViewController : FoodManagerDelegate {
         textFieldInvalid(error, textField: emailTextField, label: invalidEmailLabel)
     }
     
+    func didUpdateUser(_ foodManager: FoodManager) {}
+    func didDownloadUpdatePicture(_ foodManager: FoodManager) {}
     func didFetchOrders(_ foodManager: FoodManager) {}
     func didLogOutUser(_ foodManager: FoodManager) {}
 }
