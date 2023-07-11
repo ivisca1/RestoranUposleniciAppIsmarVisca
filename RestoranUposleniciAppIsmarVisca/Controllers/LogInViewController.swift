@@ -38,6 +38,7 @@ class LogInViewController: UIViewController {
 }
 
 extension LogInViewController : FoodManagerDelegate {
+    
     func didSignInUser(_ foodManager: FoodManager, user: User?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainTabBarController = storyboard.instantiateViewController(identifier: "MainTabBarController")
@@ -56,6 +57,7 @@ extension LogInViewController : FoodManagerDelegate {
         }
     }
     
+    func didFetchOrders(_ foodManager: FoodManager) {}
     func didLogOutUser(_ foodManager: FoodManager) {}
 }
 

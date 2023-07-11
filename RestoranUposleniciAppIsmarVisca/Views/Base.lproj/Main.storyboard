@@ -313,7 +313,7 @@
             </objects>
             <point key="canvasLocation" x="2127.4809160305344" y="411.97183098591552"/>
         </scene>
-        <!--Profil-->
+        <!--Profile View Controller-->
         <scene sceneID="BjW-wo-HDe">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="JuJ-rn-myz" customClass="ProfileViewController" customModule="RestoranUposleniciAppIsmarVisca" customModuleProvider="target" sceneMemberID="viewController">
@@ -337,11 +337,11 @@
                         <viewLayoutGuide key="safeArea" id="3Cz-ei-sor"/>
                         <color key="backgroundColor" red="0.1069632396" green="0.1078381315" blue="0.1764785945" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profil" image="person.fill" catalog="system" id="96R-Bp-fhO"/>
+                    <navigationItem key="navigationItem" id="CCy-Pv-6AB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ET9-IY-ssn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4092" y="412"/>
+            <point key="canvasLocation" x="5017.5572519083971" y="411.97183098591552"/>
         </scene>
         <!--Yummie-->
         <scene sceneID="afF-zt-nwb">
@@ -363,7 +363,7 @@
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oUQ-JM-gCg">
                                                         <rect key="frame" x="0.0" y="37" width="393" height="233"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cFT-St-0hU">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cFT-St-0hU">
                                                             <size key="itemSize" width="128" height="128"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -516,7 +516,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="8kM-SU-ddE" kind="relationship" relationship="viewControllers" id="tGg-Xw-9yl"/>
-                        <segue destination="JuJ-rn-myz" kind="relationship" relationship="viewControllers" id="X9q-GD-jZK"/>
+                        <segue destination="MHQ-Nm-g3e" kind="relationship" relationship="viewControllers" id="X9q-GD-jZK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PmG-6Q-AUy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -663,6 +663,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B1u-hG-Bb7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4090.8396946564885" y="-304.22535211267609"/>
+        </scene>
+        <!--Profil-->
+        <scene sceneID="IXj-ZC-t7K">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="MHQ-Nm-g3e" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profil" image="person.fill" catalog="system" id="96R-Bp-fhO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="W93-MR-hWh">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JuJ-rn-myz" kind="relationship" relationship="rootViewController" id="BEN-vl-3ZK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qid-HN-lwC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4090.8396946564885" y="411.97183098591552"/>
         </scene>
     </scenes>
     <resources>

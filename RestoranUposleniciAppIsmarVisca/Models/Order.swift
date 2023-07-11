@@ -8,8 +8,8 @@
 import Foundation
 
 struct Order {
-    var address, email : String
+    var address, email, deliveryMan : String
     var ordered, delivered : Bool
     var orderNumber : Int
-    var food : [String]
+    var food : [FoodDish]
 }

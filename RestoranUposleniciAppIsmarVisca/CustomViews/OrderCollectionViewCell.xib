@@ -16,41 +16,68 @@
                 <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azt-qM-WJy" customClass="OrderCardView" customModule="RestoranUposleniciAppIsmarVisca" customModuleProvider="target">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="azt-qM-WJy" customClass="ImageCardView" customModule="RestoranUposleniciAppIsmarVisca" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ro-NZ-92I" customClass="ImageCardView" customModule="RestoranUposleniciAppIsmarVisca" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ro-NZ-92I" customClass="ImageCardView" customModule="RestoranUposleniciAppIsmarVisca" customModuleProvider="target">
                                 <rect key="frame" x="8" y="5" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="burger" translatesAutoresizingMaskIntoConstraints="NO" id="9vN-k2-o5Y">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="burger" translatesAutoresizingMaskIntoConstraints="NO" id="9vN-k2-o5Y">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.42745098040000001" green="0.41960784309999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="HXG-WE-WCM"/>
+                                    <constraint firstAttribute="bottom" secondItem="9vN-k2-o5Y" secondAttribute="bottom" id="J7M-T4-43Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="9vN-k2-o5Y" secondAttribute="trailing" id="XY5-nl-ImP"/>
+                                    <constraint firstItem="9vN-k2-o5Y" firstAttribute="leading" secondItem="6ro-NZ-92I" secondAttribute="leading" id="ht7-6z-ZCD"/>
+                                    <constraint firstItem="9vN-k2-o5Y" firstAttribute="top" secondItem="6ro-NZ-92I" secondAttribute="top" id="xJT-0f-6iz"/>
+                                    <constraint firstAttribute="height" constant="40" id="yS6-Hb-qg0"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fOq-8m-iuN" customClass="ImageCardView" customModule="RestoranUposleniciAppIsmarVisca" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fOq-8m-iuN" customClass="ImageCardView" customModule="RestoranUposleniciAppIsmarVisca" customModuleProvider="target">
                                 <rect key="frame" x="56" y="5" width="40" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="margarita" translatesAutoresizingMaskIntoConstraints="NO" id="b3r-6D-3GS">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="margarita" translatesAutoresizingMaskIntoConstraints="NO" id="b3r-6D-3GS">
                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.42745098040000001" green="0.41960784309999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="b3r-6D-3GS" secondAttribute="trailing" id="4Zm-Rm-CeR"/>
+                                    <constraint firstAttribute="height" constant="40" id="G0a-n8-WpC"/>
+                                    <constraint firstItem="b3r-6D-3GS" firstAttribute="top" secondItem="fOq-8m-iuN" secondAttribute="top" id="G42-ns-r3Q"/>
+                                    <constraint firstAttribute="bottom" secondItem="b3r-6D-3GS" secondAttribute="bottom" id="e9l-2l-7Ac"/>
+                                    <constraint firstItem="b3r-6D-3GS" firstAttribute="leading" secondItem="fOq-8m-iuN" secondAttribute="leading" id="eEb-dE-YnQ"/>
+                                    <constraint firstAttribute="width" constant="40" id="pEB-et-mvc"/>
+                                </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukV-0k-B5D">
-                                <rect key="frame" x="104" y="15" width="18" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jBx-Xx-HaF" customClass="ImageCardView" customModule="RestoranUposleniciAppIsmarVisca" customModuleProvider="target">
+                                <rect key="frame" x="104" y="5" width="40" height="40"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cevapi" translatesAutoresizingMaskIntoConstraints="NO" id="seG-qj-yAV">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.42745098040000001" green="0.41960784309999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="seG-qj-yAV" firstAttribute="top" secondItem="jBx-Xx-HaF" secondAttribute="top" id="ANW-lv-xSJ"/>
+                                    <constraint firstAttribute="height" constant="40" id="Hzh-cZ-Uco"/>
+                                    <constraint firstAttribute="trailing" secondItem="seG-qj-yAV" secondAttribute="trailing" id="UTq-JK-028"/>
+                                    <constraint firstAttribute="width" constant="40" id="ZXu-14-46d"/>
+                                    <constraint firstItem="seG-qj-yAV" firstAttribute="leading" secondItem="jBx-Xx-HaF" secondAttribute="leading" id="fXH-49-XQO"/>
+                                    <constraint firstAttribute="bottom" secondItem="seG-qj-yAV" secondAttribute="bottom" id="zeA-dZ-hu1"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukV-0k-B5D">
+                                <rect key="frame" x="152" y="14.666666666666664" width="18" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="25 KM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cZ-rA-Rhh">
-                                <rect key="frame" x="303" y="15" width="50" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 KM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cZ-rA-Rhh">
+                                <rect key="frame" x="303" y="14.666666666666664" width="50" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.92114132640000002" green="0.29479083420000002" blue="0.30192360280000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -58,7 +85,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="jBx-Xx-HaF" firstAttribute="leading" secondItem="fOq-8m-iuN" secondAttribute="trailing" constant="8" id="0eO-3N-jEh"/>
                             <constraint firstAttribute="height" constant="50" id="1Fl-lv-Yso"/>
+                            <constraint firstAttribute="trailing" secondItem="0cZ-rA-Rhh" secondAttribute="trailing" constant="8" id="1VZ-Rj-awK"/>
+                            <constraint firstItem="0cZ-rA-Rhh" firstAttribute="centerY" secondItem="azt-qM-WJy" secondAttribute="centerY" id="3UI-UI-ds8"/>
+                            <constraint firstItem="fOq-8m-iuN" firstAttribute="centerY" secondItem="6ro-NZ-92I" secondAttribute="centerY" id="DE4-77-Ubm"/>
+                            <constraint firstItem="6ro-NZ-92I" firstAttribute="leading" secondItem="azt-qM-WJy" secondAttribute="leading" constant="8" id="Oe3-1f-7d3"/>
+                            <constraint firstItem="ukV-0k-B5D" firstAttribute="leading" secondItem="jBx-Xx-HaF" secondAttribute="trailing" constant="8" id="ROf-me-Udc"/>
+                            <constraint firstItem="jBx-Xx-HaF" firstAttribute="centerY" secondItem="fOq-8m-iuN" secondAttribute="centerY" id="da0-Jh-yh4"/>
+                            <constraint firstItem="6ro-NZ-92I" firstAttribute="top" secondItem="azt-qM-WJy" secondAttribute="top" constant="5" id="fSb-rv-3AW"/>
+                            <constraint firstItem="fOq-8m-iuN" firstAttribute="leading" secondItem="6ro-NZ-92I" secondAttribute="trailing" constant="8" id="rKP-AM-G8Y"/>
+                            <constraint firstItem="ukV-0k-B5D" firstAttribute="centerY" secondItem="fOq-8m-iuN" secondAttribute="centerY" id="xLw-OJ-tNR"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -75,6 +112,9 @@
                 <outlet property="additionalFoodLabel" destination="ukV-0k-B5D" id="wXa-si-bHH"/>
                 <outlet property="firstDishImage" destination="9vN-k2-o5Y" id="urn-Xd-TY8"/>
                 <outlet property="secondDishImge" destination="b3r-6D-3GS" id="U0q-qd-Uwf"/>
+                <outlet property="secondDishView" destination="fOq-8m-iuN" id="5bX-95-YI1"/>
+                <outlet property="thirdDishImage" destination="seG-qj-yAV" id="Z19-bd-bLE"/>
+                <outlet property="thirdDishView" destination="jBx-Xx-HaF" id="0Hv-ke-5Ws"/>
                 <outlet property="totalPriceLabel" destination="0cZ-rA-Rhh" id="0gw-IX-ols"/>
             </connections>
             <point key="canvasLocation" x="167.17557251908397" y="19.718309859154932"/>
@@ -82,6 +122,7 @@
     </objects>
     <resources>
         <image name="burger" width="396" height="360"/>
+        <image name="cevapi" width="612" height="408"/>
         <image name="margarita" width="500" height="500"/>
     </resources>
 </document>

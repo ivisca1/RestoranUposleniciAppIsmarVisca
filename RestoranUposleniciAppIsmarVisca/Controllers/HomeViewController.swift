@@ -13,12 +13,33 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var waitingOrdersCollectionView: UICollectionView!
     @IBOutlet weak var userCollectionView: UICollectionView!
     
+    var timer = Timer()
+    var firstTime = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        MyVariables.foodManager.delegate = self
+        
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "MarkerFelt-Thin", size: 36)!, NSAttributedString.Key.foregroundColor: UIColor(red: 0.831, green: 0.765, blue: 0.51, alpha: 1.0)]
+        
+        MyVariables.foodManager.isAnyoneSignedIn()
 
         registerCells()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer.invalidate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
+            if self.firstTime {
+                self.firstTime = false
+            } else {
+                MyVariables.foodManager.fetchOrders()
+            }
+        })
     }
     
     private func registerCells() {
@@ -34,9 +55,9 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         case userCollectionView:
             return 10
         case waitingOrdersCollectionView:
-            return 4
+            return MyVariables.foodManager.waitingOrders.count
         case takenOrdersCollectionView:
-            return 3
+            return MyVariables.foodManager.takenOrders.count
         default:
             return 0
         }
@@ -50,11 +71,11 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
             return cell
         case waitingOrdersCollectionView:
             let cell = waitingOrdersCollectionView.dequeueReusableCell(withReuseIdentifier: OrderCollectionViewCell.identifier, for: indexPath) as! OrderCollectionViewCell
-            cell.setup()
+            cell.setup(order: MyVariables.foodManager.waitingOrders[indexPath.row])
             return cell
         case takenOrdersCollectionView:
             let cell = takenOrdersCollectionView.dequeueReusableCell(withReuseIdentifier: OrderCollectionViewCell.identifier, for: indexPath) as! OrderCollectionViewCell
-            cell.setup()
+            cell.setup(order: MyVariables.foodManager.takenOrders[indexPath.row])
             return cell
         default:
             return UICollectionViewCell()
@@ -68,4 +89,25 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
+}
+
+extension HomeViewController : FoodManagerDelegate {
+    func didFetchOrders(_ foodManager: FoodManager) {
+        waitingOrdersCollectionView.reloadData()
+        takenOrdersCollectionView.reloadData()
+    }
+    
+    func didLogOutUser(_ foodManager: FoodManager) {
+        
+    }
+    
+    func didSignInUser(_ foodManager: FoodManager, user: User?) {
+        
+    }
+    
+    func didFailWithError(error: String) {
+        
+    }
+    
+    
 }

@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 protocol FoodManagerDelegate {
+    func didFetchOrders(_ foodManager: FoodManager)
     func didLogOutUser(_ foodManager: FoodManager)
     func didSignInUser(_ foodManager: FoodManager, user: User?)
     func didFailWithError(error: String)
@@ -22,6 +23,32 @@ class FoodManager {
     var delegate : FoodManagerDelegate?
     
     var user : User?
+    
+    var waitingOrders = [Order]()
+    
+    var takenOrders = [Order]()
+    
+    var food = [FoodDish]()
+    
+    var didFetchFoodAlready = false
+    
+    func fetchFood() {
+        self.db.collection("food").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if !self.didFetchFoodAlready {
+                        for document in querySnapshot!.documents {
+                            self.food.append(FoodDish(image: document.data()["image"] as! String, name: document.data()["name"] as! String, price: document.data()["price"] as! String))
+                        }
+                        self.didFetchFoodAlready = true
+                    }
+                    if self.user != nil {
+                        self.fetchOrders()
+                    }
+                }
+        }
+    }
     
     func createUserWithoutSignIn(userToCreate: User) {
         
@@ -133,12 +160,42 @@ class FoodManager {
                     } else {
                         let foundUser = querySnapshot?.documents[0]
                         self.user = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool)
-                        self.delegate?.didSignInUser(self, user: self.user!)
-                        //self.fetchBasket()
+                        self.fetchFood()
                     }
             }
         } else {
             self.delegate?.didSignInUser(self, user: nil)
+        }
+    }
+    
+    func fetchOrders() {
+        waitingOrders.removeAll()
+        takenOrders.removeAll()
+        self.db.collection("orders").whereField("ordered", isEqualTo: true).whereField("delivered", isEqualTo: false)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let deliveryMan = document.data()["deliveryMan"] as! String
+                        if deliveryMan.isEmpty {
+                            var food = [FoodDish]()
+                            let foodNames = document.data()["food"] as! [String]
+                            for foodName in foodNames {
+                                food.append(self.food.first(where: { $0.name == foodName })!)
+                            }
+                            self.waitingOrders.append(Order(address: document.data()["address"] as! String, email: document.data()["email"] as! String, deliveryMan: document.data()["deliveryMan"] as! String, ordered: document.data()["ordered"] as! Bool, delivered: document.data()["delivered"] as! Bool, orderNumber: document.data()["orderNumber"] as! Int, food: food))
+                        } else if deliveryMan == self.user!.email {
+                            var food = [FoodDish]()
+                            let foodNames = document.data()["food"] as! [String]
+                            for foodName in foodNames {
+                                food.append(self.food.first(where: { $0.name == foodName })!)
+                            }
+                            self.takenOrders.append(Order(address: document.data()["address"] as! String, email: document.data()["email"] as! String, deliveryMan: document.data()["deliveryMan"] as! String, ordered: document.data()["ordered"] as! Bool, delivered: document.data()["delivered"] as! Bool, orderNumber: document.data()["orderNumber"] as! Int, food: food))
+                        }
+                    }
+                    self.delegate?.didFetchOrders(self)
+                }
         }
     }
 }

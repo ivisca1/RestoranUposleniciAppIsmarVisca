@@ -21,7 +21,6 @@
 		CE6ECA9D2A5C95E900F862E8 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6ECA9C2A5C95E900F862E8 /* Order.swift */; };
 		CE6ECA9F2A5C968300F862E8 /* FoodDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6ECA9E2A5C968300F862E8 /* FoodDish.swift */; };
 		CE6ECAA12A5C97E800F862E8 /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6ECAA02A5C97E800F862E8 /* ImageCardView.swift */; };
-		CE6ECAA52A5C996800F862E8 /* OrderCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6ECAA42A5C996800F862E8 /* OrderCardView.swift */; };
 		CEA38B7C2A4B430600815518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7B2A4B430600815518 /* AppDelegate.swift */; };
 		CEA38B7E2A4B430600815518 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7D2A4B430600815518 /* SceneDelegate.swift */; };
 		CEA38B832A4B430600815518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA38B812A4B430600815518 /* Main.storyboard */; };
@@ -52,7 +51,6 @@
 		CE6ECA9C2A5C95E900F862E8 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		CE6ECA9E2A5C968300F862E8 /* FoodDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDish.swift; sourceTree = "<group>"; };
 		CE6ECAA02A5C97E800F862E8 /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
-		CE6ECAA42A5C996800F862E8 /* OrderCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCardView.swift; sourceTree = "<group>"; };
 		CEA38B782A4B430600815518 /* RestoranUposleniciAppIsmarVisca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestoranUposleniciAppIsmarVisca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA38B7B2A4B430600815518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEA38B7D2A4B430600815518 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 				CE6ECA982A5C95B300F862E8 /* OrderCollectionViewCell.swift */,
 				CE6ECA992A5C95B300F862E8 /* OrderCollectionViewCell.xib */,
 				CE6ECAA02A5C97E800F862E8 /* ImageCardView.swift */,
-				CE6ECAA42A5C996800F862E8 /* OrderCardView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -270,7 +267,6 @@
 				CE5651AC2A5C3A4500F0BAD8 /* HomeViewController.swift in Sources */,
 				CE2BF1E82A51E2A300FEEC13 /* UIViewControllerExtension.swift in Sources */,
 				CE6ECAA12A5C97E800F862E8 /* ImageCardView.swift in Sources */,
-				CE6ECAA52A5C996800F862E8 /* OrderCardView.swift in Sources */,
 				CEBB1A042A5048EF003592B6 /* FoodManager.swift in Sources */,
 				CE6ECA9D2A5C95E900F862E8 /* Order.swift in Sources */,
 				CEB1CC762A5B1AB1000267CD /* MyVariables.swift in Sources */,

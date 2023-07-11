@@ -14,6 +14,8 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        MyVariables.foodManager.fetchFood()
 
         signUpButton.layer.cornerRadius = 15
         logInButton.layer.cornerRadius = 15
