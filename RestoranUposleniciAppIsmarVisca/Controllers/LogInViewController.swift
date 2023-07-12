@@ -16,14 +16,6 @@ class LogInViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     
     let defaultColor = UIColor.lightGray.cgColor
-    let activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.style = .large
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = UIColor(red: 0.922, green: 0.294, blue: 0.302, alpha: 1.0)
-        return activityIndicator
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +38,7 @@ extension LogInViewController : FoodManagerDelegate {
     }
     
     func didFailWithError(error: String) {
-        stopSpinner()
+        stopSpinner(activityIndicator: MyVariables.activityIndicator)
         if error == "Šifra neispravna!" {
             textFieldInvalid(error, textField: passwordTextField, label: invalidPasswordLabel)
         } else if error == "Korisnik nije pronađen. Prvo kreirajte profil!" {
@@ -57,6 +49,9 @@ extension LogInViewController : FoodManagerDelegate {
         }
     }
     
+    func didTakeOrder(_ foodManager: FoodManager) {}
+    func didDeliverOrder(_ foodManager: FoodManager) {}
+    func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}
     func didUpdateUser(_ foodManager: FoodManager) {}
     func didDownloadUpdatePicture(_ foodManager: FoodManager) {}
     func didFetchOrders(_ foodManager: FoodManager) {}
@@ -142,32 +137,11 @@ extension LogInViewController {
         
         if password.isEmpty == false {
             if emailValid {
-                showSpinner()
+                showSpinner(activityIndicator: MyVariables.activityIndicator)
                 MyVariables.foodManager.logInUser(email: email, password: password)
             }
         } else {
             textFieldInvalid("Šifra polje je obavezno!", textField: passwordTextField, label: invalidPasswordLabel)
         }
-    }
-    
-    private func showSpinner() {
-        
-        activityIndicator.startAnimating()
-
-        self.view.addSubview(activityIndicator)
-            
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        ])
-            
-        self.view.layoutSubviews()
-    }
-    
-    private func stopSpinner() {
-        
-        activityIndicator.stopAnimating()
-        
-        activityIndicator.removeFromSuperview()
     }
 }

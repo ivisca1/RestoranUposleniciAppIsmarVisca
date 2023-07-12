@@ -84,6 +84,9 @@ extension ProfileViewController : FoodManagerDelegate {
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
     }
     
+    func didTakeOrder(_ foodManager: FoodManager) {}
+    func didDeliverOrder(_ foodManager: FoodManager) {}
+    func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}
     func didUpdateUser(_ foodManager: FoodManager) {}
     func didFetchOrders(_ foodManager: FoodManager) {}
     func didSignInUser(_ foodManager: FoodManager, user: User?) {}

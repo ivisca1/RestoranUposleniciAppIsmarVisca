@@ -53,7 +53,7 @@ class OrderCollectionViewCell: UICollectionViewCell {
             firstDishImage.image = UIImage(named: order.food[0].image)
             secondDishImge.image = UIImage(named: order.food[1].image)
             thirdDishImage.image = UIImage(named: order.food[2].image)
-            additionalFoodLabel.text = "+\(order.food.count - 2)"
+            additionalFoodLabel.text = "+\(order.food.count - 3)"
         }
     }
 }

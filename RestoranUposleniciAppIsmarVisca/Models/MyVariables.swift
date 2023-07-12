@@ -9,6 +9,15 @@ import UIKit
 
 struct MyVariables {
     static var foodManager = FoodManager()
+    static let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.style = .large
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.color = UIColor(red: 0.922, green: 0.294, blue: 0.302, alpha: 1.0)
+        return activityIndicator
+    }()
+    static var shouldRefreshOrders = false
 }
 
 func textFieldInvalid(_ msg: String, textField: UITextField!, label: UILabel!) {

@@ -47,6 +47,9 @@ extension ChangeUserDetailsViewController : FoodManagerDelegate {
         navigationController?.popViewController(animated: true)
     }
     
+    func didTakeOrder(_ foodManager: FoodManager) {}
+    func didDeliverOrder(_ foodManager: FoodManager) {}
+    func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}
     func didDownloadUpdatePicture(_ foodManager: FoodManager) {}
     func didFetchOrders(_ foodManager: FoodManager) {}
     func didLogOutUser(_ foodManager: FoodManager) {}

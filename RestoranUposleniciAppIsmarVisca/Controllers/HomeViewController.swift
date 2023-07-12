@@ -9,43 +9,24 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var refreshImageView: UIImageView!
     @IBOutlet weak var takenOrdersCollectionView: UICollectionView!
     @IBOutlet weak var waitingOrdersCollectionView: UICollectionView!
     @IBOutlet weak var userCollectionView: UICollectionView!
     
-    var timer = Timer()
-    var firstTime = true
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        MyVariables.foodManager.delegate = self
-        
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "MarkerFelt-Thin", size: 36)!, NSAttributedString.Key.foregroundColor: UIColor(red: 0.831, green: 0.765, blue: 0.51, alpha: 1.0)]
-        
-        MyVariables.foodManager.isAnyoneSignedIn()
-
-        registerCells()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        timer.invalidate()
+        setUpEverything()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true, block: { _ in
-            if self.firstTime {
-                self.firstTime = false
-            } else {
-                MyVariables.foodManager.fetchOrders()
-            }
-        })
-    }
-    
-    private func registerCells() {
-        userCollectionView.register(UINib(nibName: UserCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UserCollectionViewCell.identifier)
-        waitingOrdersCollectionView.register(UINib(nibName: OrderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
-        takenOrdersCollectionView.register(UINib(nibName: OrderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
+        MyVariables.foodManager.delegate = self
+        if MyVariables.shouldRefreshOrders {
+            showSpinner(activityIndicator: MyVariables.activityIndicator)
+            MyVariables.foodManager.fetchOrders()
+            MyVariables.shouldRefreshOrders = false
+        }
     }
 }
 
@@ -88,20 +69,63 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if collectionView == waitingOrdersCollectionView {
+            let controller = NewOrderViewController.instantiate()
+            controller.order = MyVariables.foodManager.waitingOrders[indexPath.row]
+            navigationController?.pushViewController(controller, animated: true)
+        } else if collectionView == takenOrdersCollectionView {
+            let controller = TakenOrderViewController.instantiate()
+            controller.order = MyVariables.foodManager.takenOrders[indexPath.row]
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
 }
 
 extension HomeViewController : FoodManagerDelegate {
     
     func didFetchOrders(_ foodManager: FoodManager) {
+        stopSpinner(activityIndicator: MyVariables.activityIndicator)
         waitingOrdersCollectionView.reloadData()
         takenOrdersCollectionView.reloadData()
     }
     
+    func didTakeOrder(_ foodManager: FoodManager) {}
+    func didDeliverOrder(_ foodManager: FoodManager) {}
+    func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}
     func didUpdateUser(_ foodManager: FoodManager) {}
     func didDownloadUpdatePicture(_ foodManager: FoodManager) {}
     func didLogOutUser(_ foodManager: FoodManager) {}
     func didSignInUser(_ foodManager: FoodManager, user: User?) {}
     func didFailWithError(error: String) {}
+}
+
+extension HomeViewController {
+    
+    private func setUpEverything() {
+        MyVariables.foodManager.delegate = self
+        
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(refreshTapped(tapGestureRecognizer:)))
+        refreshImageView.isUserInteractionEnabled = true
+        refreshImageView.addGestureRecognizer(tapGestureRecognizer)
+        
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "MarkerFelt-Thin", size: 36)!, NSAttributedString.Key.foregroundColor: UIColor(red: 0.831, green: 0.765, blue: 0.51, alpha: 1.0)]
+        
+        showSpinner(activityIndicator: MyVariables.activityIndicator)
+        MyVariables.foodManager.isAnyoneSignedIn()
+
+        registerCells()
+    }
+    
+    private func registerCells() {
+        userCollectionView.register(UINib(nibName: UserCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: UserCollectionViewCell.identifier)
+        waitingOrdersCollectionView.register(UINib(nibName: OrderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
+        takenOrdersCollectionView.register(UINib(nibName: OrderCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: OrderCollectionViewCell.identifier)
+    }
+    
+    @objc func refreshTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        showSpinner(activityIndicator: MyVariables.activityIndicator)
+        MyVariables.foodManager.fetchOrders()
+    }
 }

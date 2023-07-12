@@ -27,14 +27,6 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     
     let defaultColor = UIColor.lightGray.cgColor
-    let activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator = UIActivityIndicatorView()
-        activityIndicator.style = .large
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.color = UIColor(red: 0.922, green: 0.294, blue: 0.302, alpha: 1.0)
-        return activityIndicator
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,10 +45,13 @@ extension SignUpViewController : FoodManagerDelegate {
     }
     
     func didFailWithError(error: String) {
-        stopSpinner()
+        stopSpinner(activityIndicator: MyVariables.activityIndicator)
         textFieldInvalid(error, textField: emailTextField, label: invalidEmailLabel)
     }
     
+    func didTakeOrder(_ foodManager: FoodManager) {}
+    func didDeliverOrder(_ foodManager: FoodManager) {}
+    func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}
     func didUpdateUser(_ foodManager: FoodManager) {}
     func didDownloadUpdatePicture(_ foodManager: FoodManager) {}
     func didFetchOrders(_ foodManager: FoodManager) {}
@@ -256,7 +251,7 @@ extension SignUpViewController {
             if password == passwordAgain {
                 if nameValid && surnameValid && phoneNumberValid && addressValid && emailValid && passwordValid {
                     let request = User(name: name, surname: surname, phoneNumber: phoneNumber, email: email, address: address, orderNumber: 0, isCustomer: true, isEmployee: true, isAdmin: false)
-                    showSpinner()
+                    showSpinner(activityIndicator: MyVariables.activityIndicator)
                     MyVariables.foodManager.createUser(userToCreate: request, password: password)
                 }
             } else {
@@ -268,26 +263,5 @@ extension SignUpViewController {
         } else {
             textFieldInvalid("Potvrdi Šifru polje je obavezno!", textField: passwordAgainTextField, label: invalidPasswordAgainLabel)
         }
-    }
-    
-    private func showSpinner() {
-        
-        activityIndicator.startAnimating()
-
-        self.view.addSubview(activityIndicator)
-            
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        ])
-            
-        self.view.layoutSubviews()
-    }
-    
-    private func stopSpinner() {
-        
-        activityIndicator.stopAnimating()
-        
-        activityIndicator.removeFromSuperview()
     }
 }

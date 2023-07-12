@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CE2BF1E82A51E2A300FEEC13 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF1E72A51E2A300FEEC13 /* UIViewControllerExtension.swift */; };
 		CE2BF1EA2A51E54400FEEC13 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF1E92A51E54400FEEC13 /* User.swift */; };
+		CE3038022A5EE41D00BC0635 /* FoodDishViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3038002A5EE41D00BC0635 /* FoodDishViewCell.swift */; };
+		CE3038032A5EE41D00BC0635 /* FoodDishViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE3038012A5EE41D00BC0635 /* FoodDishViewCell.xib */; };
+		CE3038052A5EE71A00BC0635 /* FoodCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3038042A5EE71A00BC0635 /* FoodCardView.swift */; };
 		CE3CC1852A4F218100FAF792 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CC1842A4F218100FAF792 /* FirstViewController.swift */; };
 		CE3CC1872A4F219100FAF792 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CC1862A4F219100FAF792 /* LogInViewController.swift */; };
 		CE3CC1892A4F219D00FAF792 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3CC1882A4F219D00FAF792 /* SignUpViewController.swift */; };
@@ -24,6 +27,8 @@
 		CE6ECA9D2A5C95E900F862E8 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6ECA9C2A5C95E900F862E8 /* Order.swift */; };
 		CE6ECA9F2A5C968300F862E8 /* FoodDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6ECA9E2A5C968300F862E8 /* FoodDish.swift */; };
 		CE6ECAA12A5C97E800F862E8 /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6ECAA02A5C97E800F862E8 /* ImageCardView.swift */; };
+		CE708DF62A5E96C2003A1B5B /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE708DF52A5E96C2003A1B5B /* NewOrderViewController.swift */; };
+		CE708DF82A5E991E003A1B5B /* TakenOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE708DF72A5E991E003A1B5B /* TakenOrderViewController.swift */; };
 		CEA38B7C2A4B430600815518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7B2A4B430600815518 /* AppDelegate.swift */; };
 		CEA38B7E2A4B430600815518 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7D2A4B430600815518 /* SceneDelegate.swift */; };
 		CEA38B832A4B430600815518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA38B812A4B430600815518 /* Main.storyboard */; };
@@ -43,6 +48,9 @@
 /* Begin PBXFileReference section */
 		CE2BF1E72A51E2A300FEEC13 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		CE2BF1E92A51E54400FEEC13 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CE3038002A5EE41D00BC0635 /* FoodDishViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDishViewCell.swift; sourceTree = "<group>"; };
+		CE3038012A5EE41D00BC0635 /* FoodDishViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoodDishViewCell.xib; sourceTree = "<group>"; };
+		CE3038042A5EE71A00BC0635 /* FoodCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCardView.swift; sourceTree = "<group>"; };
 		CE3CC1842A4F218100FAF792 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		CE3CC1862A4F219100FAF792 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		CE3CC1882A4F219D00FAF792 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +63,8 @@
 		CE6ECA9C2A5C95E900F862E8 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		CE6ECA9E2A5C968300F862E8 /* FoodDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDish.swift; sourceTree = "<group>"; };
 		CE6ECAA02A5C97E800F862E8 /* ImageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
+		CE708DF52A5E96C2003A1B5B /* NewOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
+		CE708DF72A5E991E003A1B5B /* TakenOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakenOrderViewController.swift; sourceTree = "<group>"; };
 		CEA38B782A4B430600815518 /* RestoranUposleniciAppIsmarVisca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestoranUposleniciAppIsmarVisca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA38B7B2A4B430600815518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEA38B7D2A4B430600815518 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +115,8 @@
 				CE5651AB2A5C3A4500F0BAD8 /* HomeViewController.swift */,
 				CE5651AD2A5C3A5B00F0BAD8 /* ProfileViewController.swift */,
 				CE46E8A42A5DB7A90011401F /* ChangeUserDetailsViewController.swift */,
+				CE708DF52A5E96C2003A1B5B /* NewOrderViewController.swift */,
+				CE708DF72A5E991E003A1B5B /* TakenOrderViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -179,6 +191,9 @@
 				CE6ECA982A5C95B300F862E8 /* OrderCollectionViewCell.swift */,
 				CE6ECA992A5C95B300F862E8 /* OrderCollectionViewCell.xib */,
 				CE6ECAA02A5C97E800F862E8 /* ImageCardView.swift */,
+				CE3038002A5EE41D00BC0635 /* FoodDishViewCell.swift */,
+				CE3038012A5EE41D00BC0635 /* FoodDishViewCell.xib */,
+				CE3038042A5EE71A00BC0635 /* FoodCardView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -258,6 +273,7 @@
 			files = (
 				CEA38B882A4B430800815518 /* LaunchScreen.storyboard in Resources */,
 				CED13E782A5C678A00BD970A /* UserCollectionViewCell.xib in Resources */,
+				CE3038032A5EE41D00BC0635 /* FoodDishViewCell.xib in Resources */,
 				CE3CC18B2A4F271800FAF792 /* GoogleService-Info.plist in Resources */,
 				CEA38B852A4B430800815518 /* Assets.xcassets in Resources */,
 				CEA38B832A4B430600815518 /* Main.storyboard in Resources */,
@@ -272,16 +288,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE3038052A5EE71A00BC0635 /* FoodCardView.swift in Sources */,
 				CE3CC1892A4F219D00FAF792 /* SignUpViewController.swift in Sources */,
 				CEA38B7C2A4B430600815518 /* AppDelegate.swift in Sources */,
 				CEB1CC782A5B1B82000267CD /* StringExtension.swift in Sources */,
 				CE6ECA9A2A5C95B300F862E8 /* OrderCollectionViewCell.swift in Sources */,
 				CEA38B7E2A4B430600815518 /* SceneDelegate.swift in Sources */,
+				CE708DF62A5E96C2003A1B5B /* NewOrderViewController.swift in Sources */,
 				CE3CC1872A4F219100FAF792 /* LogInViewController.swift in Sources */,
+				CE3038022A5EE41D00BC0635 /* FoodDishViewCell.swift in Sources */,
 				CE46E8A52A5DB7A90011401F /* ChangeUserDetailsViewController.swift in Sources */,
 				CE2BF1EA2A51E54400FEEC13 /* User.swift in Sources */,
 				CE5651AE2A5C3A5B00F0BAD8 /* ProfileViewController.swift in Sources */,
 				CE3CC1852A4F218100FAF792 /* FirstViewController.swift in Sources */,
+				CE708DF82A5E991E003A1B5B /* TakenOrderViewController.swift in Sources */,
 				CE6ECA9F2A5C968300F862E8 /* FoodDish.swift in Sources */,
 				CE5651AC2A5C3A4500F0BAD8 /* HomeViewController.swift in Sources */,
 				CE2BF1E82A51E2A300FEEC13 /* UIViewControllerExtension.swift in Sources */,

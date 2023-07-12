@@ -12,6 +12,9 @@ import FirebaseFirestore
 import FirebaseStorage
 
 protocol FoodManagerDelegate {
+    func didTakeOrder(_ foodManager: FoodManager)
+    func didDeliverOrder(_ foodManager: FoodManager)
+    func didFindUserForOrder(_ foodManager: FoodManager, user: User?)
     func didUpdateUser(_ foodManager: FoodManager)
     func didDownloadUpdatePicture(_ foodManager: FoodManager)
     func didFetchOrders(_ foodManager: FoodManager)
@@ -39,6 +42,8 @@ class FoodManager {
     var didFetchFoodAlready = false
     
     var image = UIImage(named: "defaultProfilePicture")
+    
+    var userOrder : User?
     
     func fetchFood() {
         self.db.collection("food").getDocuments() { (querySnapshot, err) in
@@ -272,6 +277,67 @@ class FoodManager {
                 let image = UIImage(data: data!)
                 self.image = image!
                 self.delegate?.didDownloadUpdatePicture(self)
+            }
+        }
+    }
+    
+    func findUserForOrder(_ email : String) {
+        self.db.collection("users").whereField("email", isEqualTo: email)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    let foundUser = querySnapshot?.documents[0]
+                    self.userOrder = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool)
+                    self.delegate?.didFindUserForOrder(self, user: self.userOrder!)
+                }
+        }
+    }
+    
+    func deliverOrder() {
+        db.collection("orders").whereField("email", isEqualTo: userOrder!.email).whereField("orderNumber", isEqualTo: userOrder!.orderNumber).getDocuments { (result, error) in
+            if error == nil{
+                let foundOrder = self.db.collection("orders").document("\(self.userOrder!.email)\(self.userOrder!.orderNumber)")
+                foundOrder.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        foundOrder.updateData([
+                            "delivered": true
+                        ]) { err in
+                            if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                print("Document successfully updated")
+                                self.delegate?.didDeliverOrder(self)
+                            }
+                        }
+                    } else {
+                        print("Document does not exist")
+                    }
+                }
+            }
+        }
+    }
+    
+    func takeOrder() {
+        db.collection("orders").whereField("email", isEqualTo: userOrder!.email).whereField("orderNumber", isEqualTo: userOrder!.orderNumber).getDocuments { (result, error) in
+            if error == nil{
+                let foundOrder = self.db.collection("orders").document("\(self.userOrder!.email)\(self.userOrder!.orderNumber)")
+                foundOrder.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        foundOrder.updateData([
+                            "deliveryMan": self.user!.email
+                        ]) { err in
+                            if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                print("Document successfully updated")
+                                self.delegate?.didTakeOrder(self)
+                            }
+                        }
+                    } else {
+                        print("Document does not exist")
+                    }
+                }
             }
         }
     }
