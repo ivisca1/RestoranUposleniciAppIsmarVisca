@@ -11,4 +11,5 @@ struct User {
     var name, surname, phoneNumber, email, address : String
     var orderNumber : Int
     var isCustomer, isEmployee, isAdmin : Bool
+    var status : String
 }

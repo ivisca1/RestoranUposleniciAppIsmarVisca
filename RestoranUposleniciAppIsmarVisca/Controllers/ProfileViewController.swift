@@ -10,6 +10,7 @@ import RSKImageCropper
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var statusPickerView: UIPickerView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
@@ -17,6 +18,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileImageView: UIImageView!
     
     var imagePicker = UIImagePickerController()
+    let statusArray = ["Aktivan", "Pauza", "Neaktivan"]
+    let statusColor = [UIColor.green, UIColor.yellow, UIColor.red]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +87,7 @@ extension ProfileViewController : FoodManagerDelegate {
         (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(loginNavController)
     }
     
+    func didFetchOtherEmployees(_ foodManager: FoodManager) {}
     func didTakeOrder(_ foodManager: FoodManager) {}
     func didDeliverOrder(_ foodManager: FoodManager) {}
     func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}
@@ -91,6 +95,34 @@ extension ProfileViewController : FoodManagerDelegate {
     func didFetchOrders(_ foodManager: FoodManager) {}
     func didSignInUser(_ foodManager: FoodManager, user: User?) {}
     func didFailWithError(error: String) {}
+}
+
+extension ProfileViewController : UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return statusArray.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return statusArray[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        MyVariables.foodManager.changeStatus(statusArray[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var label = UILabel()
+        if let v = view as? UILabel { label = v }
+        label.font = UIFont (name: "Helvetica Neue", size: 17)
+        label.text =  statusArray[row]
+        label.textAlignment = .center
+        label.textColor = statusColor[row]
+        return label
+    }
 }
 
 extension ProfileViewController {
@@ -108,6 +140,9 @@ extension ProfileViewController {
         profileImageView.clipsToBounds = true
         
         profileImageView.image = MyVariables.foodManager.image
+        
+        let index = statusArray.firstIndex(of: MyVariables.foodManager.user!.status)!
+        statusPickerView.selectRow(index, inComponent: 0, animated: true)
         
         MyVariables.foodManager.getProfilePicture()
     }

@@ -20,20 +20,21 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bHI-BY-YJ8">
                         <rect key="frame" x="0.0" y="0.0" width="361" height="50"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfilePicture" translatesAutoresizingMaskIntoConstraints="NO" id="grR-S7-1yx">
-                                <rect key="frame" x="8" y="5" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="Psd-MY-Ua9"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aktivan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBF-Bf-FWE">
-                                <rect key="frame" x="296" y="15" width="57" height="21"/>
+                                <rect key="frame" x="296" y="14.666666666666664" width="57" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" systemColor="systemGreenColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOD-Rr-qGv">
+                                <rect key="frame" x="0.0" y="49.333333333333336" width="361" height="0.6666666666666643"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.67000000000000004" id="Y4w-ss-vBH"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ime Prezime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wC6-1e-01o">
-                                <rect key="frame" x="56" y="14.666666666666664" width="94" height="21"/>
+                                <rect key="frame" x="8" y="14.666666666666664" width="94" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -41,14 +42,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.1069632396" green="0.1078381315" blue="0.1764785945" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="wC6-1e-01o" firstAttribute="centerY" secondItem="bHI-BY-YJ8" secondAttribute="centerY" id="87g-2A-xHq"/>
+                            <constraint firstItem="wC6-1e-01o" firstAttribute="leading" secondItem="bHI-BY-YJ8" secondAttribute="leading" constant="8" id="AE3-ym-5kV"/>
+                            <constraint firstAttribute="trailing" secondItem="MOD-Rr-qGv" secondAttribute="trailing" id="AP6-0O-hBr"/>
+                            <constraint firstAttribute="bottom" secondItem="MOD-Rr-qGv" secondAttribute="bottom" id="Fdx-Ry-yvj"/>
+                            <constraint firstItem="MOD-Rr-qGv" firstAttribute="leading" secondItem="bHI-BY-YJ8" secondAttribute="leading" id="FyF-WZ-7ZS"/>
                             <constraint firstAttribute="height" constant="50" id="IAs-Al-KB6"/>
-                            <constraint firstItem="wC6-1e-01o" firstAttribute="leading" secondItem="grR-S7-1yx" secondAttribute="trailing" constant="8" id="YMe-45-qvU"/>
-                            <constraint firstAttribute="bottom" secondItem="grR-S7-1yx" secondAttribute="bottom" constant="5" id="njT-WY-l6R"/>
-                            <constraint firstItem="XBF-Bf-FWE" firstAttribute="top" secondItem="bHI-BY-YJ8" secondAttribute="top" constant="15" id="p1y-Uw-egE"/>
-                            <constraint firstItem="grR-S7-1yx" firstAttribute="leading" secondItem="bHI-BY-YJ8" secondAttribute="leading" constant="8" id="peC-U7-Jpd"/>
-                            <constraint firstItem="grR-S7-1yx" firstAttribute="top" secondItem="bHI-BY-YJ8" secondAttribute="top" constant="5" id="sT1-4q-WFk"/>
-                            <constraint firstItem="wC6-1e-01o" firstAttribute="centerY" secondItem="grR-S7-1yx" secondAttribute="centerY" id="vop-8X-SaG"/>
-                            <constraint firstAttribute="bottom" secondItem="XBF-Bf-FWE" secondAttribute="bottom" constant="14" id="y0f-lH-xGi"/>
+                            <constraint firstItem="XBF-Bf-FWE" firstAttribute="centerY" secondItem="wC6-1e-01o" secondAttribute="centerY" id="eJD-jW-fvp"/>
                             <constraint firstAttribute="trailing" secondItem="XBF-Bf-FWE" secondAttribute="trailing" constant="8" id="z9W-37-GEx"/>
                         </constraints>
                     </view>
@@ -64,14 +64,15 @@
             <size key="customSize" width="228" height="43"/>
             <connections>
                 <outlet property="userActivityLabel" destination="XBF-Bf-FWE" id="Z1S-5K-P5n"/>
-                <outlet property="userImageView" destination="grR-S7-1yx" id="Scw-aI-csJ"/>
                 <outlet property="userNameSurname" destination="wC6-1e-01o" id="JQn-G2-xjh"/>
             </connections>
             <point key="canvasLocation" x="183.20610687022901" y="17.95774647887324"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="defaultProfilePicture" width="2048" height="2048"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

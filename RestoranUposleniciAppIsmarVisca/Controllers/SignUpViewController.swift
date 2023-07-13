@@ -49,6 +49,7 @@ extension SignUpViewController : FoodManagerDelegate {
         textFieldInvalid(error, textField: emailTextField, label: invalidEmailLabel)
     }
     
+    func didFetchOtherEmployees(_ foodManager: FoodManager) {}
     func didTakeOrder(_ foodManager: FoodManager) {}
     func didDeliverOrder(_ foodManager: FoodManager) {}
     func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}
@@ -250,7 +251,7 @@ extension SignUpViewController {
         if passwordAgain.isEmpty == false {
             if password == passwordAgain {
                 if nameValid && surnameValid && phoneNumberValid && addressValid && emailValid && passwordValid {
-                    let request = User(name: name, surname: surname, phoneNumber: phoneNumber, email: email, address: address, orderNumber: 0, isCustomer: true, isEmployee: true, isAdmin: false)
+                    let request = User(name: name, surname: surname, phoneNumber: phoneNumber, email: email, address: address, orderNumber: 0, isCustomer: true, isEmployee: true, isAdmin: false, status: "Neaktivan")
                     showSpinner(activityIndicator: MyVariables.activityIndicator)
                     MyVariables.foodManager.createUser(userToCreate: request, password: password)
                 }

@@ -12,6 +12,7 @@ import FirebaseFirestore
 import FirebaseStorage
 
 protocol FoodManagerDelegate {
+    func didFetchOtherEmployees(_ foodManager: FoodManager)
     func didTakeOrder(_ foodManager: FoodManager)
     func didDeliverOrder(_ foodManager: FoodManager)
     func didFindUserForOrder(_ foodManager: FoodManager, user: User?)
@@ -44,6 +45,8 @@ class FoodManager {
     var image = UIImage(named: "defaultProfilePicture")
     
     var userOrder : User?
+    
+    var otherEmployees = [User]()
     
     func fetchFood() {
         self.db.collection("food").getDocuments() { (querySnapshot, err) in
@@ -142,8 +145,8 @@ class FoodManager {
                             let foundUser = querySnapshot?.documents[0]
                             let isEmployee = foundUser?.data()["isEmployee"] as! Bool
                             if isEmployee {
-                                self.user = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool)
-                                self.delegate?.didSignInUser(self, user: self.user!)
+                                self.user = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool, status: foundUser?.data()["status"] as! String)
+                                self.updateStatus("Aktivan", option: 1)
                             } else {
                                 let errorMsg = "Korisnik nije pronađen. Prvo kreirajte profil!"
                                 self.delegate?.didFailWithError(error: errorMsg)
@@ -157,8 +160,7 @@ class FoodManager {
     func logOutUser() {
         do {
             try FirebaseAuth.Auth.auth().signOut()
-            user = nil
-            self.delegate?.didLogOutUser(self)
+            updateStatus("Neaktivan", option: 0)
         } catch {
             print("An error occurred")
         }
@@ -172,8 +174,9 @@ class FoodManager {
                         print("Error getting documents: \(err)")
                     } else {
                         let foundUser = querySnapshot?.documents[0]
-                        self.user = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool)
+                        self.user = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool, status: foundUser?.data()["status"] as! String)
                         self.fetchFood()
+                        self.fetchOtherUsersStatus()
                     }
             }
         } else {
@@ -213,7 +216,7 @@ class FoodManager {
     }
     
     func updateUser(name: String, surname: String, phoneNumber: String, address: String) {
-        user = User(name: name, surname: surname, phoneNumber: phoneNumber, email: user!.email, address: address, orderNumber: user!.orderNumber, isCustomer: user!.isCustomer, isEmployee: user!.isEmployee, isAdmin: user!.isAdmin)
+        user = User(name: name, surname: surname, phoneNumber: phoneNumber, email: user!.email, address: address, orderNumber: user!.orderNumber, isCustomer: user!.isCustomer, isEmployee: user!.isEmployee, isAdmin: user!.isAdmin, status: user!.status)
         db.collection("users").whereField("email", isEqualTo: user!.email).getDocuments { (result, error) in
             if error == nil{
                 let foundUser = self.db.collection("users").document(self.user!.email)
@@ -288,7 +291,7 @@ class FoodManager {
                     print("Error getting documents: \(err)")
                 } else {
                     let foundUser = querySnapshot?.documents[0]
-                    self.userOrder = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool)
+                    self.userOrder = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool, status: foundUser?.data()["status"] as! String)
                     self.delegate?.didFindUserForOrder(self, user: self.userOrder!)
                 }
         }
@@ -332,6 +335,57 @@ class FoodManager {
                             } else {
                                 print("Document successfully updated")
                                 self.delegate?.didTakeOrder(self)
+                            }
+                        }
+                    } else {
+                        print("Document does not exist")
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchOtherUsersStatus() {
+        otherEmployees.removeAll()
+        self.db.collection("users").whereField("isEmployee", isEqualTo: true).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let foundUserEmail = document.data()["email"] as! String
+                        if foundUserEmail == self.user?.email {
+                            continue
+                        }
+                        self.otherEmployees.append(User(name: document.data()["name"] as! String, surname: document.data()["surname"] as! String, phoneNumber: document.data()["phoneNumber"] as! String, email: document.data()["email"] as! String, address: document.data()["address"] as! String, orderNumber: document.data()["orderNumber"] as! Int, isCustomer: document.data()["isCustomer"] as! Bool, isEmployee: document.data()["isEmployee"] as! Bool, isAdmin: document.data()["isAdmin"] as! Bool, status: document.data()["status"] as! String))
+                    }
+                    self.delegate?.didFetchOtherEmployees(self)
+                }
+        }
+    }
+    
+    func changeStatus(_ status: String) {
+        updateStatus(status, option: 2)
+    }
+    
+    private func updateStatus(_ status: String, option: Int) {
+        db.collection("users").whereField("email", isEqualTo: user!.email).getDocuments { (result, error) in
+            if error == nil{
+                let foundUser = self.db.collection("users").document("\(self.user!.email)")
+                foundUser.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        foundUser.updateData([
+                            "status": status
+                        ]) { err in
+                            if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                print("Document successfully updated")
+                                if option == 0 {
+                                    self.user = nil
+                                    self.delegate?.didLogOutUser(self)
+                                } else if option == 1 {
+                                    self.delegate?.didSignInUser(self, user: self.user!)
+                                }
                             }
                         }
                     } else {

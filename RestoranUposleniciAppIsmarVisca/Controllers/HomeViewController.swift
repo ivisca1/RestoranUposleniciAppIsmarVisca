@@ -9,6 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    @IBOutlet weak var refreshUsersImageView: UIImageView!
     @IBOutlet weak var refreshImageView: UIImageView!
     @IBOutlet weak var takenOrdersCollectionView: UICollectionView!
     @IBOutlet weak var waitingOrdersCollectionView: UICollectionView!
@@ -35,7 +36,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case userCollectionView:
-            return 10
+            return MyVariables.foodManager.otherEmployees.count
         case waitingOrdersCollectionView:
             return MyVariables.foodManager.waitingOrders.count
         case takenOrdersCollectionView:
@@ -49,7 +50,7 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
         switch collectionView {
         case userCollectionView:
             let cell = userCollectionView.dequeueReusableCell(withReuseIdentifier: UserCollectionViewCell.identifier, for: indexPath) as! UserCollectionViewCell
-            cell.setup()
+            cell.setup(user: MyVariables.foodManager.otherEmployees[indexPath.row])
             return cell
         case waitingOrdersCollectionView:
             let cell = waitingOrdersCollectionView.dequeueReusableCell(withReuseIdentifier: OrderCollectionViewCell.identifier, for: indexPath) as! OrderCollectionViewCell
@@ -89,6 +90,13 @@ extension HomeViewController : FoodManagerDelegate {
         takenOrdersCollectionView.reloadData()
     }
     
+    func didFetchOtherEmployees(_ foodManager: FoodManager) {
+        if MyVariables.activityIndicator.isAnimating {
+            stopSpinner(activityIndicator: MyVariables.activityIndicator)
+        }
+        userCollectionView.reloadData()
+    }
+    
     func didTakeOrder(_ foodManager: FoodManager) {}
     func didDeliverOrder(_ foodManager: FoodManager) {}
     func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}
@@ -110,6 +118,10 @@ extension HomeViewController {
         refreshImageView.isUserInteractionEnabled = true
         refreshImageView.addGestureRecognizer(tapGestureRecognizer)
         
+        let tapGestureRecognizerUsers = UITapGestureRecognizer(target: self, action: #selector(refreshUsersTapped(tapGestureRecognizer:)))
+        refreshUsersImageView.isUserInteractionEnabled = true
+        refreshUsersImageView.addGestureRecognizer(tapGestureRecognizerUsers)
+        
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "MarkerFelt-Thin", size: 36)!, NSAttributedString.Key.foregroundColor: UIColor(red: 0.831, green: 0.765, blue: 0.51, alpha: 1.0)]
         
         showSpinner(activityIndicator: MyVariables.activityIndicator)
@@ -127,5 +139,10 @@ extension HomeViewController {
     @objc func refreshTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         showSpinner(activityIndicator: MyVariables.activityIndicator)
         MyVariables.foodManager.fetchOrders()
+    }
+    
+    @objc func refreshUsersTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        showSpinner(activityIndicator: MyVariables.activityIndicator)
+        MyVariables.foodManager.fetchOtherUsersStatus()
     }
 }
