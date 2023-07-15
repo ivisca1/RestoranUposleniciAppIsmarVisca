@@ -38,6 +38,8 @@ class FoodManager {
     
     var takenOrders = [Order]()
     
+    var finishedOrders = [Order]()
+    
     var food = [FoodDish]()
     
     var didFetchFoodAlready = false
@@ -46,7 +48,11 @@ class FoodManager {
     
     var userOrder : User?
     
+    var deliveryManOrder : User?
+    
     var otherEmployees = [User]()
+    
+    var userRequests = [Request]()
     
     func fetchFood() {
         self.db.collection("food").getDocuments() { (querySnapshot, err) in
@@ -176,7 +182,7 @@ class FoodManager {
                         let foundUser = querySnapshot?.documents[0]
                         self.user = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool, status: foundUser?.data()["status"] as! String)
                         self.fetchFood()
-                        self.fetchOtherUsersStatus()
+                        self.fetchOtherUsersStatus(false)
                     }
             }
         } else {
@@ -187,13 +193,14 @@ class FoodManager {
     func fetchOrders() {
         waitingOrders.removeAll()
         takenOrders.removeAll()
-        self.db.collection("orders").whereField("ordered", isEqualTo: true).whereField("delivered", isEqualTo: false)
+        self.db.collection("orders").whereField("ordered", isEqualTo: true)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
                         let deliveryMan = document.data()["deliveryMan"] as! String
+                        let delivered = document.data()["delivered"] as! Bool
                         if deliveryMan.isEmpty {
                             var food = [FoodDish]()
                             let foodNames = document.data()["food"] as! [String]
@@ -201,6 +208,13 @@ class FoodManager {
                                 food.append(self.food.first(where: { $0.name == foodName })!)
                             }
                             self.waitingOrders.append(Order(address: document.data()["address"] as! String, email: document.data()["email"] as! String, deliveryMan: document.data()["deliveryMan"] as! String, ordered: document.data()["ordered"] as! Bool, delivered: document.data()["delivered"] as! Bool, orderNumber: document.data()["orderNumber"] as! Int, food: food))
+                        } else if delivered {
+                            var food = [FoodDish]()
+                            let foodNames = document.data()["food"] as! [String]
+                            for foodName in foodNames {
+                                food.append(self.food.first(where: { $0.name == foodName })!)
+                            }
+                            self.finishedOrders.append(Order(address: document.data()["address"] as! String, email: document.data()["email"] as! String, deliveryMan: document.data()["deliveryMan"] as! String, ordered: document.data()["ordered"] as! Bool, delivered: document.data()["delivered"] as! Bool, orderNumber: document.data()["orderNumber"] as! Int, food: food))
                         } else if deliveryMan == self.user!.email {
                             var food = [FoodDish]()
                             let foodNames = document.data()["food"] as! [String]
@@ -345,7 +359,7 @@ class FoodManager {
         }
     }
     
-    func fetchOtherUsersStatus() {
+    func fetchOtherUsersStatus(_ shouldFetchRequests : Bool) {
         otherEmployees.removeAll()
         self.db.collection("users").whereField("isEmployee", isEqualTo: true).getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -358,7 +372,11 @@ class FoodManager {
                         }
                         self.otherEmployees.append(User(name: document.data()["name"] as! String, surname: document.data()["surname"] as! String, phoneNumber: document.data()["phoneNumber"] as! String, email: document.data()["email"] as! String, address: document.data()["address"] as! String, orderNumber: document.data()["orderNumber"] as! Int, isCustomer: document.data()["isCustomer"] as! Bool, isEmployee: document.data()["isEmployee"] as! Bool, isAdmin: document.data()["isAdmin"] as! Bool, status: document.data()["status"] as! String))
                     }
-                    self.delegate?.didFetchOtherEmployees(self)
+                    if shouldFetchRequests {
+                        self.getProfileCreationRequests()
+                    } else {
+                        self.delegate?.didFetchOtherEmployees(self)
+                    }
                 }
         }
     }
@@ -393,6 +411,33 @@ class FoodManager {
                     }
                 }
             }
+        }
+    }
+    
+    func getProfileCreationRequests() {
+        userRequests.removeAll()
+        self.db.collection("requests").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        self.userRequests.append(Request(name: document.data()["name"] as! String, surname: document.data()["surname"] as! String, phoneNumber: document.data()["phoneNumber"] as! String, email: document.data()["email"] as! String, address: document.data()["address"] as! String, orderNumber: document.data()["orderNumber"] as! Int, isCustomer: document.data()["isCustomer"] as! Bool, isEmployee: document.data()["isEmployee"] as! Bool, isAdmin: document.data()["isAdmin"] as! Bool, status: document.data()["status"] as! String, password: document.data()["password"] as! String))
+                    }
+                    self.delegate?.didFetchOtherEmployees(self)
+                }
+        }
+    }
+    
+    func findDeliveryManForOrder(_ email : String) {
+        self.db.collection("users").whereField("email", isEqualTo: email)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    let foundUser = querySnapshot?.documents[0]
+                    self.deliveryManOrder = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool, status: foundUser?.data()["status"] as! String)
+                    self.delegate?.didDeliverOrder(self)
+                }
         }
     }
 }

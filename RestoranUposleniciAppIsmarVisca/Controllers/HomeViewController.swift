@@ -15,6 +15,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var waitingOrdersCollectionView: UICollectionView!
     @IBOutlet weak var userCollectionView: UICollectionView!
     
+    var shouldPrepareForAdmin = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,6 +25,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         MyVariables.foodManager.delegate = self
+        MyVariables.showIncome = false
         if MyVariables.shouldRefreshOrders {
             showSpinner(activityIndicator: MyVariables.activityIndicator)
             MyVariables.foodManager.fetchOrders()
@@ -86,6 +89,17 @@ extension HomeViewController : FoodManagerDelegate {
     
     func didFetchOrders(_ foodManager: FoodManager) {
         stopSpinner(activityIndicator: MyVariables.activityIndicator)
+        if MyVariables.foodManager.user!.isAdmin && shouldPrepareForAdmin {
+            shouldPrepareForAdmin = false
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let ordersNavController = storyboard.instantiateViewController(identifier: "OrdersReviewNavigationController")
+            let employeesNavController = storyboard.instantiateViewController(identifier: "EmployeesReviewNavigationController")
+            let profileNavController = storyboard.instantiateViewController(identifier: "ProfileNavigationController")
+            tabBarController?.viewControllers?.remove(at: 1)
+            tabBarController?.viewControllers?.append(ordersNavController)
+            tabBarController?.viewControllers?.append(employeesNavController)
+            tabBarController?.viewControllers?.append(profileNavController)
+        }
         waitingOrdersCollectionView.reloadData()
         takenOrdersCollectionView.reloadData()
     }
@@ -143,6 +157,6 @@ extension HomeViewController {
     
     @objc func refreshUsersTapped(tapGestureRecognizer: UITapGestureRecognizer) {
         showSpinner(activityIndicator: MyVariables.activityIndicator)
-        MyVariables.foodManager.fetchOtherUsersStatus()
+        MyVariables.foodManager.fetchOtherUsersStatus(false)
     }
 }

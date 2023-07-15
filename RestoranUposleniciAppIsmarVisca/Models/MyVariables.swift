@@ -18,6 +18,7 @@ struct MyVariables {
         return activityIndicator
     }()
     static var shouldRefreshOrders = false
+    static var showIncome = false
 }
 
 func textFieldInvalid(_ msg: String, textField: UITextField!, label: UILabel!) {
