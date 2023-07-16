@@ -21,6 +21,9 @@ class RequestReviewViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("DA")
+        MyVariables.foodManager.delegate = self
 
         nameSurnameLabel.text = "\(request.name) \(request.surname)"
         emailLabel.text = request.email
@@ -33,9 +36,46 @@ class RequestReviewViewController: UIViewController {
         detailsView.layer.cornerRadius = 20
     }
     
-    @IBAction func rejectButtonPressed(_ sender: UIButton) {
-    }
-    @IBAction func acceptButtonPressed(_ sender: UIButton) {
+    override func viewWillAppear(_ animated: Bool) {
+        MyVariables.foodManager.delegate = self
     }
     
+    @IBAction func rejectButtonPressed(_ sender: UIButton) {
+        showSpinner(activityIndicator: MyVariables.activityIndicator)
+        MyVariables.foodManager.rejectRequest(email: request.email)
+    }
+    
+    @IBAction func acceptButtonPressed(_ sender: UIButton) {
+        showSpinner(activityIndicator: MyVariables.activityIndicator)
+        MyVariables.foodManager.acceptRequest(request: request)
+    }
+    
+}
+
+extension RequestReviewViewController : FoodManagerDelegate {
+    func didRejectRequest(_ foodManager: FoodManager) {
+        stopSpinner(activityIndicator: MyVariables.activityIndicator)
+        MyVariables.shouldRefreshEmployees = true
+        navigationController!.view.makeToast("Uspješno odbijen zahtjev!", duration: 2.0, position: .bottom)
+        navigationController!.popViewController(animated: true)
+    }
+    
+    func didAcceptRequest(_ foodManager: FoodManager) {
+        stopSpinner(activityIndicator: MyVariables.activityIndicator)
+        MyVariables.shouldRefreshEmployees = true
+        MyVariables.foodManager.logOutLogIn()
+        navigationController!.view.makeToast("Uspješno prihvaćen zahtjev!", duration: 2.0, position: .bottom)
+        navigationController!.popViewController(animated: true)
+    }
+    
+    func didUpdateUser(_ foodManager: FoodManager) {}
+    func didFetchOtherEmployees(_ foodManager: FoodManager) {}
+    func didTakeOrder(_ foodManager: FoodManager) {}
+    func didDeliverOrder(_ foodManager: FoodManager) {}
+    func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}
+    func didDownloadUpdatePicture(_ foodManager: FoodManager) {}
+    func didFetchOrders(_ foodManager: FoodManager) {}
+    func didLogOutUser(_ foodManager: FoodManager) {}
+    func didSignInUser(_ foodManager: FoodManager, user: User?) {}
+    func didFailWithError(error: String) {}
 }

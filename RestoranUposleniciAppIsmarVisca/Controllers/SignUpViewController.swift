@@ -41,7 +41,9 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController : FoodManagerDelegate {
     func didSignInUser(_ foodManager: FoodManager, user: User?) {
+        stopSpinner(activityIndicator: MyVariables.activityIndicator)
         navigationController?.view.makeToast("Zahtjev poslan!", duration: 2.0, position: .bottom)
+        navigationController?.popViewController(animated: true)
     }
     
     func didFailWithError(error: String) {
@@ -49,6 +51,8 @@ extension SignUpViewController : FoodManagerDelegate {
         textFieldInvalid(error, textField: emailTextField, label: invalidEmailLabel)
     }
     
+    func didRejectRequest(_ foodManager: FoodManager) {}
+    func didAcceptRequest(_ foodManager: FoodManager) {}
     func didFetchOtherEmployees(_ foodManager: FoodManager) {}
     func didTakeOrder(_ foodManager: FoodManager) {}
     func didDeliverOrder(_ foodManager: FoodManager) {}
@@ -125,6 +129,8 @@ extension SignUpViewController {
     private func setUpEverything() {
         
         self.hideKeyboardWhenTappedAround()
+        
+        MyVariables.foodManager.delegate = self
         
         nameTextField.delegate = self
         surnameTextField.delegate = self

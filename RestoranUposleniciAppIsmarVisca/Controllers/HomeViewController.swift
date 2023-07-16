@@ -111,6 +111,8 @@ extension HomeViewController : FoodManagerDelegate {
         userCollectionView.reloadData()
     }
     
+    func didRejectRequest(_ foodManager: FoodManager) {}
+    func didAcceptRequest(_ foodManager: FoodManager) {}
     func didTakeOrder(_ foodManager: FoodManager) {}
     func didDeliverOrder(_ foodManager: FoodManager) {}
     func didFindUserForOrder(_ foodManager: FoodManager, user: User?) {}

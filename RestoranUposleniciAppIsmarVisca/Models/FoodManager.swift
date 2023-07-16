@@ -12,6 +12,8 @@ import FirebaseFirestore
 import FirebaseStorage
 
 protocol FoodManagerDelegate {
+    func didRejectRequest(_ foodManager: FoodManager)
+    func didAcceptRequest(_ foodManager: FoodManager)
     func didFetchOtherEmployees(_ foodManager: FoodManager)
     func didTakeOrder(_ foodManager: FoodManager)
     func didDeliverOrder(_ foodManager: FoodManager)
@@ -72,38 +74,40 @@ class FoodManager {
         }
     }
     
-    func createUserWithoutSignIn(userToCreate: User) {
-        
-    }
-    
     func createUser(userToCreate : User, password: String) {
         self.db.collection("requests").whereField("email", isEqualTo: userToCreate.email)
             .getDocuments() { (querySnapshot, err) in
-                if err != nil {
-                    self.db.collection("users").whereField("email", isEqualTo: userToCreate.email)
-                        .getDocuments() { (querySnapshot, err) in
-                            if err == nil {
-                                let foundUser = querySnapshot?.documents[0]
-                                let isEmployee = foundUser?.data()["isEmployee"] as! Bool
-                                let isCustomer = foundUser?.data()["isCustomer"] as! Bool
-                                if isCustomer && !isEmployee {
-                                    self.createNewRequest(userToCreate, password: password)
-                                } else {
-                                    let errorMsg = "Profil sa ovim email-om već postoji!"
-                                    self.delegate?.didFailWithError(error: errorMsg)
-                                }
-                            } else {
-                                self.createNewRequest(userToCreate, password: password)
-                            }
+                if err == nil {
+                    if (querySnapshot?.documents.count)! > 0 {
+                        let errorMsg = "Već ste poslali zahtjev za kreiranje profila!"
+                        self.delegate?.didFailWithError(error: errorMsg)
                     }
-                } else {
-                    let errorMsg = "Već ste poslali zahtjev za kreiranje profila!"
-                    self.delegate?.didFailWithError(error: errorMsg)
+                    else {
+                        self.db.collection("users").whereField("email", isEqualTo: userToCreate.email)
+                            .getDocuments() { (querySnapshot, err) in
+                                if err == nil {
+                                    if (querySnapshot?.documents.count)! == 0 {
+                                        self.createNewRequest(userToCreate, password: password, false, false)
+                                    }
+                                    else {
+                                        let foundUser = querySnapshot?.documents[0]
+                                        let isEmployee = foundUser?.data()["isEmployee"] as! Bool
+                                        let isCustomer = foundUser?.data()["isCustomer"] as! Bool
+                                        if isCustomer && !isEmployee {
+                                            self.createNewRequest(userToCreate, password: password, true, false)
+                                        } else {
+                                            let errorMsg = "Profil sa ovim email-om već postoji!"
+                                            self.delegate?.didFailWithError(error: errorMsg)
+                                        }
+                                    }
+                                }
+                        }
+                    }
                 }
         }
     }
     
-    private func createNewRequest(_ userToCreate: User, password: String) {
+    private func createNewRequest(_ userToCreate: User, password: String, _ isCustomer: Bool, _ isEmployee: Bool) {
         self.db.collection("requests").document(userToCreate.email).setData([
             "name": userToCreate.name,
             "surname": userToCreate.surname,
@@ -111,17 +115,16 @@ class FoodManager {
             "address": userToCreate.address,
             "phoneNumber": userToCreate.phoneNumber,
             "orderNumber": 0,
-            "isCustomer": true,
-            "isEmployee": true,
+            "isCustomer": isCustomer,
+            "isEmployee": isEmployee,
             "isAdmin": false,
-            "password": password
+            "password": password,
+            "status": "Neaktivan"
         ]) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully written!")
-                //self.ordered = false
-                self.user = userToCreate
                 self.delegate?.didSignInUser(self, user: userToCreate)
             }
         }
@@ -421,7 +424,10 @@ class FoodManager {
                     print("Error getting documents: \(err)")
                 } else {
                     for document in querySnapshot!.documents {
-                        self.userRequests.append(Request(name: document.data()["name"] as! String, surname: document.data()["surname"] as! String, phoneNumber: document.data()["phoneNumber"] as! String, email: document.data()["email"] as! String, address: document.data()["address"] as! String, orderNumber: document.data()["orderNumber"] as! Int, isCustomer: document.data()["isCustomer"] as! Bool, isEmployee: document.data()["isEmployee"] as! Bool, isAdmin: document.data()["isAdmin"] as! Bool, status: document.data()["status"] as! String, password: document.data()["password"] as! String))
+                        let foundEmail = document.data()["email"] as! String
+                        if foundEmail != "proba123@gmail.com" {
+                            self.userRequests.append(Request(name: document.data()["name"] as! String, surname: document.data()["surname"] as! String, phoneNumber: document.data()["phoneNumber"] as! String, email: document.data()["email"] as! String, address: document.data()["address"] as! String, orderNumber: document.data()["orderNumber"] as! Int, isCustomer: document.data()["isCustomer"] as! Bool, isEmployee: document.data()["isEmployee"] as! Bool, isAdmin: document.data()["isAdmin"] as! Bool, status: document.data()["status"] as! String, password: document.data()["password"] as! String))
+                        }
                     }
                     self.delegate?.didFetchOtherEmployees(self)
                 }
@@ -438,6 +444,99 @@ class FoodManager {
                     self.deliveryManOrder = User(name: foundUser?.data()["name"] as! String, surname: foundUser?.data()["surname"] as! String, phoneNumber: foundUser?.data()["phoneNumber"] as! String, email: foundUser?.data()["email"] as! String, address: foundUser?.data()["address"] as! String, orderNumber: foundUser?.data()["orderNumber"] as! Int, isCustomer: foundUser?.data()["isCustomer"] as! Bool, isEmployee: foundUser?.data()["isEmployee"] as! Bool, isAdmin: foundUser?.data()["isAdmin"] as! Bool, status: foundUser?.data()["status"] as! String)
                     self.delegate?.didDeliverOrder(self)
                 }
+        }
+    }
+    
+    func rejectRequest(email: String) {
+        db.collection("requests").document(email).delete() { err in
+            if let err = err {
+                print("Error removing document: \(err)")
+            } else {
+                print("Document successfully removed!")
+                self.delegate?.didRejectRequest(self)
+            }
+        }
+    }
+    
+    func acceptRequest(request: Request) {
+        FirebaseAuth.Auth.auth().createUser(withEmail: request.email, password: request.password, completion: { result, error in
+            if error != nil {
+                let errCode = AuthErrorCode(_nsError: error! as NSError)
+                switch errCode.code {
+                case .accountExistsWithDifferentCredential, .credentialAlreadyInUse, .emailAlreadyInUse:
+                    self.updateUserRole(email: request.email)
+                default:
+                    break
+                }
+            }
+            else {
+                self.db.collection("users").document(request.email).setData([
+                    "name": request.name,
+                    "surname": request.surname,
+                    "email": request.email,
+                    "address": request.address,
+                    "phoneNumber": request.phoneNumber,
+                    "orderNumber": 0,
+                    "isCustomer": true,
+                    "isEmployee": true,
+                    "isAdmin": false,
+                    "status": "Neaktivan"
+                ]) { err in
+                    if let err = err {
+                        print("Error writing document: \(err)")
+                    } else {
+                        print("Document successfully written!")
+                        self.db.collection("requests").document(request.email).delete() { err in
+                            if let err = err {
+                                print("Error removing document: \(err)")
+                            } else {
+                                print("Document successfully removed!")
+                                self.delegate?.didAcceptRequest(self)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
+    private func updateUserRole(email: String) {
+        db.collection("users").whereField("email", isEqualTo: email).getDocuments { (result, error) in
+            if error == nil{
+                let foundUser = self.db.collection("users").document("\(email)")
+                foundUser.getDocument { (document, error) in
+                    if let document = document, document.exists {
+                        foundUser.updateData([
+                            "isEmployee": true
+                        ]) { err in
+                            if let err = err {
+                                print("Error updating document: \(err)")
+                            } else {
+                                print("Document successfully updated")
+                                self.db.collection("requests").document(email).delete() { err in
+                                    if let err = err {
+                                        print("Error removing document: \(err)")
+                                    } else {
+                                        print("Document successfully removed!")
+                                        self.delegate?.didAcceptRequest(self)
+                                    }
+                                }
+                            }
+                        }
+                    } else {
+                        print("Document does not exist")
+                    }
+                }
+            }
+        }
+    }
+    
+    func logOutLogIn() {
+        do {
+            try FirebaseAuth.Auth.auth().signOut()
+            FirebaseAuth.Auth.auth().signIn(withEmail: user!.email, password: "issmar123")
+        } catch {
+            print("error")
         }
     }
 }

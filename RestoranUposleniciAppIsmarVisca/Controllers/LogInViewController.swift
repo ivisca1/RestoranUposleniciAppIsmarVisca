@@ -49,6 +49,8 @@ extension LogInViewController : FoodManagerDelegate {
         }
     }
     
+    func didRejectRequest(_ foodManager: FoodManager) {}
+    func didAcceptRequest(_ foodManager: FoodManager) {}
     func didFetchOtherEmployees(_ foodManager: FoodManager) {}
     func didTakeOrder(_ foodManager: FoodManager) {}
     func didDeliverOrder(_ foodManager: FoodManager) {}
@@ -95,8 +97,6 @@ extension LogInViewController {
     private func setUpEverything() {
         
         MyVariables.foodManager.delegate = self
-
-        navigationController?.navigationBar.tintColor = UIColor.white
         
         self.hideKeyboardWhenTappedAround()
         

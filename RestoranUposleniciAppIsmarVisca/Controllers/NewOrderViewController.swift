@@ -85,6 +85,8 @@ extension NewOrderViewController : FoodManagerDelegate {
         navigationController!.popViewController(animated: true)
     }
     
+    func didRejectRequest(_ foodManager: FoodManager) {}
+    func didAcceptRequest(_ foodManager: FoodManager) {}
     func didFetchOtherEmployees(_ foodManager: FoodManager) {}
     func didDeliverOrder(_ foodManager: FoodManager) {}
     func didUpdateUser(_ foodManager: FoodManager) {}

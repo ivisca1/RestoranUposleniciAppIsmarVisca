@@ -15,6 +15,8 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.tintColor = UIColor.white
+        
         MyVariables.foodManager.fetchFood()
 
         signUpButton.layer.cornerRadius = 15

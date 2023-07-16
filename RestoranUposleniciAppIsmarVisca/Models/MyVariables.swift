@@ -18,6 +18,7 @@ struct MyVariables {
         return activityIndicator
     }()
     static var shouldRefreshOrders = false
+    static var shouldRefreshEmployees = false
     static var showIncome = false
 }
 

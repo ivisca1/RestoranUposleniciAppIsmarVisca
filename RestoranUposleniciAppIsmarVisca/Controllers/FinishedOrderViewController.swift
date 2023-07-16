@@ -77,6 +77,8 @@ extension FinishedOrderViewController : FoodManagerDelegate {
         deliveryManLabel.text = "\(MyVariables.foodManager.deliveryManOrder!.name) \(MyVariables.foodManager.deliveryManOrder!.surname)"
     }
     
+    func didRejectRequest(_ foodManager: FoodManager) {}
+    func didAcceptRequest(_ foodManager: FoodManager) {}
     func didTakeOrder(_ foodManager: FoodManager) {}
     func didFetchOtherEmployees(_ foodManager: FoodManager) {}
     func didUpdateUser(_ foodManager: FoodManager) {}

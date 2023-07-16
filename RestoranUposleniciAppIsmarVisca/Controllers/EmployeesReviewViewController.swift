@@ -20,6 +20,11 @@ class EmployeesReviewViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         MyVariables.foodManager.delegate = self
+        if MyVariables.shouldRefreshEmployees {
+            showSpinner(activityIndicator: MyVariables.activityIndicator)
+            MyVariables.foodManager.fetchOtherUsersStatus(true)
+            MyVariables.shouldRefreshEmployees = false
+        }
     }
 }
 
@@ -70,6 +75,8 @@ extension EmployeesReviewViewController : FoodManagerDelegate {
         requestsCollectionView.reloadData()
     }
     
+    func didRejectRequest(_ foodManager: FoodManager) {}
+    func didAcceptRequest(_ foodManager: FoodManager) {}
     func didFetchOrders(_ foodManager: FoodManager) {}
     func didTakeOrder(_ foodManager: FoodManager) {}
     func didDeliverOrder(_ foodManager: FoodManager) {}
