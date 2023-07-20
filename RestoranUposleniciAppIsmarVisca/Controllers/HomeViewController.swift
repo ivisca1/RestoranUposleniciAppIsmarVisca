@@ -74,6 +74,10 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == waitingOrdersCollectionView {
+            collectionView.cellForItem(at: indexPath)?.alpha = 0.5
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                collectionView.cellForItem(at: indexPath)?.alpha = 1
+            }
             let controller = NewOrderViewController.instantiate()
             controller.order = MyVariables.foodManager.waitingOrders[indexPath.row]
             navigationController?.pushViewController(controller, animated: true)
@@ -94,11 +98,8 @@ extension HomeViewController : FoodManagerDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let ordersNavController = storyboard.instantiateViewController(identifier: "OrdersReviewNavigationController")
             let employeesNavController = storyboard.instantiateViewController(identifier: "EmployeesReviewNavigationController")
-            let profileNavController = storyboard.instantiateViewController(identifier: "ProfileNavigationController")
-            tabBarController?.viewControllers?.remove(at: 1)
-            tabBarController?.viewControllers?.append(ordersNavController)
-            tabBarController?.viewControllers?.append(employeesNavController)
-            tabBarController?.viewControllers?.append(profileNavController)
+            tabBarController?.viewControllers?.insert(ordersNavController, at: 1)
+            tabBarController?.viewControllers?.insert(employeesNavController, at: 2)
         }
         waitingOrdersCollectionView.reloadData()
         takenOrdersCollectionView.reloadData()
@@ -111,6 +112,7 @@ extension HomeViewController : FoodManagerDelegate {
         userCollectionView.reloadData()
     }
     
+    func didFetchReservations(_ foodManager: FoodManager) {}
     func didRejectRequest(_ foodManager: FoodManager) {}
     func didAcceptRequest(_ foodManager: FoodManager) {}
     func didTakeOrder(_ foodManager: FoodManager) {}

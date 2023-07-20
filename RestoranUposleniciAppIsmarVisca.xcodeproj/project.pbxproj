@@ -24,6 +24,10 @@
 		CE46E8A02A5DAE990011401F /* RSKImageCropper in Frameworks */ = {isa = PBXBuildFile; productRef = CE46E89F2A5DAE990011401F /* RSKImageCropper */; };
 		CE46E8A32A5DAF430011401F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CE46E8A22A5DAF430011401F /* FirebaseStorage */; };
 		CE46E8A52A5DB7A90011401F /* ChangeUserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE46E8A42A5DB7A90011401F /* ChangeUserDetailsViewController.swift */; };
+		CE4D359E2A694EE900AD0D23 /* ReservationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D359C2A694EE900AD0D23 /* ReservationCollectionViewCell.swift */; };
+		CE4D359F2A694EE900AD0D23 /* ReservationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE4D359D2A694EE900AD0D23 /* ReservationCollectionViewCell.xib */; };
+		CE4D35A32A694F2400AD0D23 /* Reservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D35A22A694F2400AD0D23 /* Reservation.swift */; };
+		CE4D35A52A6952DB00AD0D23 /* ReservationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE4D35A42A6952DB00AD0D23 /* ReservationsViewController.swift */; };
 		CE5651AC2A5C3A4500F0BAD8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5651AB2A5C3A4500F0BAD8 /* HomeViewController.swift */; };
 		CE5651AE2A5C3A5B00F0BAD8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5651AD2A5C3A5B00F0BAD8 /* ProfileViewController.swift */; };
 		CE5651B12A5C41F000F0BAD8 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = CE5651B02A5C41F000F0BAD8 /* Toast */; };
@@ -50,6 +54,7 @@
 		CECF9AD12A4F127800F2EFD1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CECF9AD02A4F127800F2EFD1 /* IQKeyboardManagerSwift */; };
 		CED13E772A5C678A00BD970A /* UserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED13E752A5C678A00BD970A /* UserCollectionViewCell.swift */; };
 		CED13E782A5C678A00BD970A /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED13E762A5C678A00BD970A /* UserCollectionViewCell.xib */; };
+		CEDCE0342A6979B2004B8D53 /* ReservationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCE0332A6979B2004B8D53 /* ReservationDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +73,10 @@
 		CE45A0182A62C378004785F4 /* RequestCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestCollectionViewCell.xib; sourceTree = "<group>"; };
 		CE45A01B2A62CCED004785F4 /* FinishedOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedOrderViewController.swift; sourceTree = "<group>"; };
 		CE46E8A42A5DB7A90011401F /* ChangeUserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUserDetailsViewController.swift; sourceTree = "<group>"; };
+		CE4D359C2A694EE900AD0D23 /* ReservationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationCollectionViewCell.swift; sourceTree = "<group>"; };
+		CE4D359D2A694EE900AD0D23 /* ReservationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReservationCollectionViewCell.xib; sourceTree = "<group>"; };
+		CE4D35A22A694F2400AD0D23 /* Reservation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reservation.swift; sourceTree = "<group>"; };
+		CE4D35A42A6952DB00AD0D23 /* ReservationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationsViewController.swift; sourceTree = "<group>"; };
 		CE5651AB2A5C3A4500F0BAD8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		CE5651AD2A5C3A5B00F0BAD8 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CE6ECA982A5C95B300F862E8 /* OrderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -91,6 +100,7 @@
 		CEBB1A032A5048EF003592B6 /* FoodManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodManager.swift; sourceTree = "<group>"; };
 		CED13E752A5C678A00BD970A /* UserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionViewCell.swift; sourceTree = "<group>"; };
 		CED13E762A5C678A00BD970A /* UserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCollectionViewCell.xib; sourceTree = "<group>"; };
+		CEDCE0332A6979B2004B8D53 /* ReservationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +145,8 @@
 				CE6F32B62A617A03003913A8 /* EmployeesReviewViewController.swift */,
 				CE1A8D462A61A52800DBB30B /* RequestReviewViewController.swift */,
 				CE45A01B2A62CCED004785F4 /* FinishedOrderViewController.swift */,
+				CE4D35A42A6952DB00AD0D23 /* ReservationsViewController.swift */,
+				CEDCE0332A6979B2004B8D53 /* ReservationDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -198,6 +210,7 @@
 				CE6ECA9C2A5C95E900F862E8 /* Order.swift */,
 				CE6ECA9E2A5C968300F862E8 /* FoodDish.swift */,
 				CE1A8D482A61B50B00DBB30B /* Request.swift */,
+				CE4D35A22A694F2400AD0D23 /* Reservation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -215,6 +228,8 @@
 				CE3038042A5EE71A00BC0635 /* FoodCardView.swift */,
 				CE45A0172A62C378004785F4 /* RequestCollectionViewCell.swift */,
 				CE45A0182A62C378004785F4 /* RequestCollectionViewCell.xib */,
+				CE4D359C2A694EE900AD0D23 /* ReservationCollectionViewCell.swift */,
+				CE4D359D2A694EE900AD0D23 /* ReservationCollectionViewCell.xib */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -299,6 +314,7 @@
 				CEA38B852A4B430800815518 /* Assets.xcassets in Resources */,
 				CEA38B832A4B430600815518 /* Main.storyboard in Resources */,
 				CE45A01A2A62C378004785F4 /* RequestCollectionViewCell.xib in Resources */,
+				CE4D359F2A694EE900AD0D23 /* ReservationCollectionViewCell.xib in Resources */,
 				CE6ECA9B2A5C95B300F862E8 /* OrderCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -312,9 +328,11 @@
 			files = (
 				CE3038052A5EE71A00BC0635 /* FoodCardView.swift in Sources */,
 				CE1A8D492A61B50B00DBB30B /* Request.swift in Sources */,
+				CE4D35A32A694F2400AD0D23 /* Reservation.swift in Sources */,
 				CE3CC1892A4F219D00FAF792 /* SignUpViewController.swift in Sources */,
 				CEA38B7C2A4B430600815518 /* AppDelegate.swift in Sources */,
 				CEB1CC782A5B1B82000267CD /* StringExtension.swift in Sources */,
+				CE4D359E2A694EE900AD0D23 /* ReservationCollectionViewCell.swift in Sources */,
 				CE6ECA9A2A5C95B300F862E8 /* OrderCollectionViewCell.swift in Sources */,
 				CEA38B7E2A4B430600815518 /* SceneDelegate.swift in Sources */,
 				CE708DF62A5E96C2003A1B5B /* NewOrderViewController.swift in Sources */,
@@ -328,9 +346,11 @@
 				CE6F32B52A617954003913A8 /* OrdersReviewViewController.swift in Sources */,
 				CE5651AE2A5C3A5B00F0BAD8 /* ProfileViewController.swift in Sources */,
 				CE3CC1852A4F218100FAF792 /* FirstViewController.swift in Sources */,
+				CE4D35A52A6952DB00AD0D23 /* ReservationsViewController.swift in Sources */,
 				CE708DF82A5E991E003A1B5B /* TakenOrderViewController.swift in Sources */,
 				CE6ECA9F2A5C968300F862E8 /* FoodDish.swift in Sources */,
 				CE5651AC2A5C3A4500F0BAD8 /* HomeViewController.swift in Sources */,
+				CEDCE0342A6979B2004B8D53 /* ReservationDetailsViewController.swift in Sources */,
 				CE2BF1E82A51E2A300FEEC13 /* UIViewControllerExtension.swift in Sources */,
 				CE6ECAA12A5C97E800F862E8 /* ImageCardView.swift in Sources */,
 				CEBB1A042A5048EF003592B6 /* FoodManager.swift in Sources */,
@@ -490,8 +510,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -518,8 +537,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

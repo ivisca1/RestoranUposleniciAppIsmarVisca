@@ -84,6 +84,7 @@ extension OrdersReviewViewController : FoodManagerDelegate {
         totalIncomeLabel.text = "\(totalPrice) KM"
     }
     
+    func didFetchReservations(_ foodManager: FoodManager) {}
     func didRejectRequest(_ foodManager: FoodManager) {}
     func didAcceptRequest(_ foodManager: FoodManager) {}
     func didFetchOtherEmployees(_ foodManager: FoodManager) {}
@@ -112,11 +113,7 @@ extension OrdersReviewViewController {
         refreshFinishedOrdersImageView.isUserInteractionEnabled = true
         refreshFinishedOrdersImageView.addGestureRecognizer(tapGestureRecognizerUsers)
         
-        let label = UILabel()
-        label.textColor = UIColor.white
-        label.text = "Pregled Narudžbi"
-        label.font = label.font.withSize(26)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 26), NSAttributedString.Key.foregroundColor: UIColor.white]
         
         showSpinner(activityIndicator: MyVariables.activityIndicator)
         MyVariables.foodManager.fetchOrders()

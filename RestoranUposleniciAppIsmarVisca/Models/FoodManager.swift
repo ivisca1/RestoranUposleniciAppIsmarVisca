@@ -12,6 +12,7 @@ import FirebaseFirestore
 import FirebaseStorage
 
 protocol FoodManagerDelegate {
+    func didFetchReservations(_ foodManager: FoodManager)
     func didRejectRequest(_ foodManager: FoodManager)
     func didAcceptRequest(_ foodManager: FoodManager)
     func didFetchOtherEmployees(_ foodManager: FoodManager)
@@ -55,6 +56,8 @@ class FoodManager {
     var otherEmployees = [User]()
     
     var userRequests = [Request]()
+    
+    var reservations = [Reservation]()
     
     func fetchFood() {
         self.db.collection("food").getDocuments() { (querySnapshot, err) in
@@ -196,6 +199,7 @@ class FoodManager {
     func fetchOrders() {
         waitingOrders.removeAll()
         takenOrders.removeAll()
+        finishedOrders.removeAll()
         self.db.collection("orders").whereField("ordered", isEqualTo: true)
             .getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -537,6 +541,35 @@ class FoodManager {
             FirebaseAuth.Auth.auth().signIn(withEmail: user!.email, password: "issmar123")
         } catch {
             print("error")
+        }
+    }
+    
+    func fetchReservations() {
+        reservations.removeAll()
+        self.db.collection("reservations").getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        self.reservations.append(Reservation(day: document.data()["day"] as! Int, month: document.data()["month"] as! Int, year: document.data()["year"] as! Int, hours: document.data()["hours"] as! Int, numberOfPeople: document.data()["numberOfPeople"] as! Int, email: document.data()["email"] as! String, comment: document.data()["comment"] as! String))
+                    }
+                    self.reservations.sort(by: {
+                        if $0.year == $1.year {
+                            if $0.month == $1.month {
+                                if $0.day == $1.day {
+                                    return $0.hours < $1.hours
+                                } else {
+                                    return $0.day < $1.day
+                                }
+                            } else {
+                                return $0.month < $1.month
+                            }
+                        } else {
+                            return $0.year < $1.year
+                        }
+                    })
+                    self.delegate?.didFetchReservations(self)
+                }
         }
     }
 }

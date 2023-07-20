@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class RequestReviewViewController: UIViewController {
 
@@ -22,7 +23,6 @@ class RequestReviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("DA")
         MyVariables.foodManager.delegate = self
 
         nameSurnameLabel.text = "\(request.name) \(request.surname)"
@@ -41,6 +41,19 @@ class RequestReviewViewController: UIViewController {
     }
     
     @IBAction func rejectButtonPressed(_ sender: UIButton) {
+        if MFMailComposeViewController.canSendMail() {
+            let composeVC = MFMailComposeViewController()
+            composeVC.mailComposeDelegate = self
+
+            composeVC.setToRecipients(["test@gmail.com"])
+            composeVC.setSubject("Email Subject")
+            composeVC.setMessageBody("", isHTML: false)
+
+            self.present(composeVC, animated: true, completion: nil)
+
+        } else {
+            print("Cannot send mail")
+        }
         showSpinner(activityIndicator: MyVariables.activityIndicator)
         MyVariables.foodManager.rejectRequest(email: request.email)
     }
@@ -68,6 +81,7 @@ extension RequestReviewViewController : FoodManagerDelegate {
         navigationController!.popViewController(animated: true)
     }
     
+    func didFetchReservations(_ foodManager: FoodManager) {}
     func didUpdateUser(_ foodManager: FoodManager) {}
     func didFetchOtherEmployees(_ foodManager: FoodManager) {}
     func didTakeOrder(_ foodManager: FoodManager) {}
@@ -78,4 +92,10 @@ extension RequestReviewViewController : FoodManagerDelegate {
     func didLogOutUser(_ foodManager: FoodManager) {}
     func didSignInUser(_ foodManager: FoodManager, user: User?) {}
     func didFailWithError(error: String) {}
+}
+
+extension RequestReviewViewController : MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }

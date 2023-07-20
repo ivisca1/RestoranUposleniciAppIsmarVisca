@@ -75,6 +75,7 @@ extension EmployeesReviewViewController : FoodManagerDelegate {
         requestsCollectionView.reloadData()
     }
     
+    func didFetchReservations(_ foodManager: FoodManager) {}
     func didRejectRequest(_ foodManager: FoodManager) {}
     func didAcceptRequest(_ foodManager: FoodManager) {}
     func didFetchOrders(_ foodManager: FoodManager) {}
@@ -95,11 +96,7 @@ extension EmployeesReviewViewController {
         
         navigationController?.navigationBar.tintColor = UIColor.white
         
-        let label = UILabel()
-        label.textColor = UIColor.white
-        label.text = "Pregled Uposlenika"
-        label.font = label.font.withSize(26)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: label)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 26), NSAttributedString.Key.foregroundColor: UIColor.white]
         
         showSpinner(activityIndicator: MyVariables.activityIndicator)
         MyVariables.foodManager.fetchOtherUsersStatus(true)
