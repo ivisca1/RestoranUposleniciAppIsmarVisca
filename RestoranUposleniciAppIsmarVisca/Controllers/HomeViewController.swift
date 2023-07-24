@@ -73,11 +73,11 @@ extension HomeViewController : UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.cellForItem(at: indexPath)?.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            collectionView.cellForItem(at: indexPath)?.alpha = 1
+        }
         if collectionView == waitingOrdersCollectionView {
-            collectionView.cellForItem(at: indexPath)?.alpha = 0.5
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                collectionView.cellForItem(at: indexPath)?.alpha = 1
-            }
             let controller = NewOrderViewController.instantiate()
             controller.order = MyVariables.foodManager.waitingOrders[indexPath.row]
             navigationController?.pushViewController(controller, animated: true)
@@ -155,11 +155,19 @@ extension HomeViewController {
     }
     
     @objc func refreshTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        refreshImageView.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.refreshImageView.alpha = 1
+        }
         showSpinner(activityIndicator: MyVariables.activityIndicator)
         MyVariables.foodManager.fetchOrders()
     }
     
     @objc func refreshUsersTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        refreshUsersImageView.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.refreshUsersImageView.alpha = 1
+        }
         showSpinner(activityIndicator: MyVariables.activityIndicator)
         MyVariables.foodManager.fetchOtherUsersStatus(false)
     }

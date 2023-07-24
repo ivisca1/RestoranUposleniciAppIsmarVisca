@@ -41,13 +41,17 @@ class RequestReviewViewController: UIViewController {
     }
     
     @IBAction func rejectButtonPressed(_ sender: UIButton) {
+        sender.alpha = 0.7
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1
+        }
         if MFMailComposeViewController.canSendMail() {
             let composeVC = MFMailComposeViewController()
             composeVC.mailComposeDelegate = self
 
-            composeVC.setToRecipients(["test@gmail.com"])
-            composeVC.setSubject("Email Subject")
-            composeVC.setMessageBody("", isHTML: false)
+            composeVC.setToRecipients([emailLabel.text!])
+            composeVC.setSubject("Odgovor na zahtjev za kreiranje profila")
+            composeVC.setMessageBody("Vaš zahtjev nije prihvaćen.", isHTML: false)
 
             self.present(composeVC, animated: true, completion: nil)
 
@@ -59,6 +63,23 @@ class RequestReviewViewController: UIViewController {
     }
     
     @IBAction func acceptButtonPressed(_ sender: UIButton) {
+        sender.alpha = 0.7
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1
+        }
+        if MFMailComposeViewController.canSendMail() {
+            let composeVC = MFMailComposeViewController()
+            composeVC.mailComposeDelegate = self
+
+            composeVC.setToRecipients([emailLabel.text!])
+            composeVC.setSubject("Odgovor na zahtjev za kreiranje profila")
+            composeVC.setMessageBody("Vaš zahtjev je prihvaćen.", isHTML: false)
+
+            self.present(composeVC, animated: true, completion: nil)
+
+        } else {
+            print("Cannot send mail")
+        }
         showSpinner(activityIndicator: MyVariables.activityIndicator)
         MyVariables.foodManager.acceptRequest(request: request)
     }

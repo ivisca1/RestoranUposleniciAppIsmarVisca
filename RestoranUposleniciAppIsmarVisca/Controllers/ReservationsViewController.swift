@@ -49,6 +49,10 @@ extension ReservationsViewController : UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.cellForItem(at: indexPath)?.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            collectionView.cellForItem(at: indexPath)?.alpha = 1
+        }
         let controller = ReservationDetailsViewController.instantiate()
         controller.reservation = MyVariables.foodManager.reservations[indexPath.row]
         navigationController?.pushViewController(controller, animated: true)

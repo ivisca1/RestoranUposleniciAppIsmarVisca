@@ -24,12 +24,20 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func logInButtonPressed(_ sender: UIButton) {
+        sender.alpha = 0.7
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1
+        }
         let controller = LogInViewController.instantiate()
         navigationController?.pushViewController(controller, animated: true)
     }
     
 
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
+        sender.alpha = 0.7
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1
+        }
         let controller = SignUpViewController.instantiate()
         navigationController?.pushViewController(controller, animated: true)
     }

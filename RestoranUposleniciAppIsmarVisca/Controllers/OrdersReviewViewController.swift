@@ -58,6 +58,10 @@ extension OrdersReviewViewController : UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.cellForItem(at: indexPath)?.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            collectionView.cellForItem(at: indexPath)?.alpha = 1
+        }
         if collectionView == waitingOrdersCollectionView {
             let controller = NewOrderViewController.instantiate()
             controller.order = MyVariables.foodManager.waitingOrders[indexPath.row]
@@ -127,11 +131,19 @@ extension OrdersReviewViewController {
     }
     
     @objc func refreshWaitingOrdersTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        refreshWaitingOrdersImageView.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.refreshWaitingOrdersImageView.alpha = 1
+        }
         showSpinner(activityIndicator: MyVariables.activityIndicator)
         MyVariables.foodManager.fetchOrders()
     }
     
     @objc func refreshFinishedOrdersTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        refreshFinishedOrdersImageView.alpha = 0.5
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.refreshFinishedOrdersImageView.alpha = 1
+        }
         showSpinner(activityIndicator: MyVariables.activityIndicator)
         MyVariables.foodManager.fetchOrders()
     }

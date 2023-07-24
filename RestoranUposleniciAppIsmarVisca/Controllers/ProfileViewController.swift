@@ -34,10 +34,18 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logOutPressed(_ sender: UIButton) {
+        sender.alpha = 0.7
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1
+        }
         MyVariables.foodManager.logOutUser()
     }
     
     @IBAction func changeDetailsPressed(_ sender: UIButton) {
+        sender.alpha = 0.7
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            sender.alpha = 1
+        }
         let controller = ChangeUserDetailsViewController.instantiate()
         navigationController?.pushViewController(controller, animated: true)
     }
