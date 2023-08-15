@@ -12,6 +12,9 @@ class EmployeesReviewViewController: UIViewController {
     @IBOutlet weak var pullDownButton: UIButton!
     @IBOutlet weak var requestsCollectionView: UICollectionView!
     @IBOutlet weak var employeesCollectionView: UICollectionView!
+    
+    var shouldShowIncome = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +22,9 @@ class EmployeesReviewViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if shouldShowIncome {
+            MyVariables.showIncome = true
+        }
         MyVariables.foodManager.delegate = self
         if MyVariables.shouldRefreshEmployees {
             showSpinner(activityIndicator: MyVariables.activityIndicator)
@@ -67,6 +73,10 @@ extension EmployeesReviewViewController : UICollectionViewDelegate, UICollection
         if collectionView == requestsCollectionView {
             let controller = RequestReviewViewController.instantiate()
             controller.request = MyVariables.foodManager.userRequests[indexPath.row]
+            navigationController?.pushViewController(controller, animated: true)
+        } else if collectionView == employeesCollectionView {
+            let controller = EmployeeDetailsViewController.instantiate()
+            controller.user = MyVariables.foodManager.otherEmployees[indexPath.row]
             navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -119,12 +129,14 @@ extension EmployeesReviewViewController {
         let income = UIAction(title: "Ukupnu zaradu") { _ in
             self.pullDownButton.setTitle("Ukupnu zaradu", for: .normal)
             MyVariables.showIncome = true
+            self.shouldShowIncome = true
             self.employeesCollectionView.reloadData()
         }
         
         let activity = UIAction(title: "Aktivnost") { _ in
             self.pullDownButton.setTitle("Aktivnost", for: .normal)
             MyVariables.showIncome = false
+            self.shouldShowIncome = false
             self.employeesCollectionView.reloadData()
         }
         

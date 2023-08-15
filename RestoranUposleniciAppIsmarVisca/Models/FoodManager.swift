@@ -59,6 +59,10 @@ class FoodManager {
     
     var reservations = [Reservation]()
     
+    var finishedOrdersForUser = [Order]()
+    
+    var takenOrdersForUser = [Order]()
+    
     func fetchFood() {
         self.db.collection("food").getDocuments() { (querySnapshot, err) in
                 if let err = err {
@@ -569,6 +573,37 @@ class FoodManager {
                         }
                     })
                     self.delegate?.didFetchReservations(self)
+                }
+        }
+    }
+    
+    func fetchOrdersForUse(user: User) {
+        takenOrdersForUser.removeAll()
+        finishedOrdersForUser.removeAll()
+        self.db.collection("orders").whereField("ordered", isEqualTo: true).whereField("deliveryMan", isEqualTo: user.email)
+            .getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        let delivered = document.data()["delivered"] as! Bool
+                        if delivered {
+                            var food = [FoodDish]()
+                            let foodNames = document.data()["food"] as! [String]
+                            for foodName in foodNames {
+                                food.append(self.food.first(where: { $0.name == foodName })!)
+                            }
+                            self.finishedOrdersForUser.append(Order(address: document.data()["address"] as! String, email: document.data()["email"] as! String, deliveryMan: document.data()["deliveryMan"] as! String, ordered: document.data()["ordered"] as! Bool, delivered: document.data()["delivered"] as! Bool, orderNumber: document.data()["orderNumber"] as! Int, food: food))
+                        } else {
+                            var food = [FoodDish]()
+                            let foodNames = document.data()["food"] as! [String]
+                            for foodName in foodNames {
+                                food.append(self.food.first(where: { $0.name == foodName })!)
+                            }
+                            self.takenOrdersForUser.append(Order(address: document.data()["address"] as! String, email: document.data()["email"] as! String, deliveryMan: document.data()["deliveryMan"] as! String, ordered: document.data()["ordered"] as! Bool, delivered: document.data()["delivered"] as! Bool, orderNumber: document.data()["orderNumber"] as! Int, food: food))
+                        }
+                    }
+                    self.delegate?.didFetchOrders(self)
                 }
         }
     }

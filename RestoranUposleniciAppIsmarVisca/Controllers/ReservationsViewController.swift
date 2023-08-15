@@ -10,6 +10,7 @@ import UIKit
 class ReservationsViewController: UIViewController {
 
     @IBOutlet weak var reservationsCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -18,13 +19,12 @@ class ReservationsViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 26), NSAttributedString.Key.foregroundColor: UIColor.white]
         
         registerCells()
-
-        showSpinner(activityIndicator: MyVariables.activityIndicator)
-        MyVariables.foodManager.fetchReservations()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         MyVariables.foodManager.delegate = self
+        showSpinner(activityIndicator: MyVariables.activityIndicator)
+        MyVariables.foodManager.fetchReservations()
     }
     
     private func registerCells() {

@@ -40,6 +40,9 @@
 		CE6F32B72A617A03003913A8 /* EmployeesReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6F32B62A617A03003913A8 /* EmployeesReviewViewController.swift */; };
 		CE708DF62A5E96C2003A1B5B /* NewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE708DF52A5E96C2003A1B5B /* NewOrderViewController.swift */; };
 		CE708DF82A5E991E003A1B5B /* TakenOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE708DF72A5E991E003A1B5B /* TakenOrderViewController.swift */; };
+		CE72CA5E2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72CA5D2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests.swift */; };
+		CE72CA602A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE72CA5F2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITestsLaunchTests.swift */; };
+		CE9456622A8BA1430034754E /* EmployeeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9456612A8BA1430034754E /* EmployeeDetailsViewController.swift */; };
 		CEA38B7C2A4B430600815518 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7B2A4B430600815518 /* AppDelegate.swift */; };
 		CEA38B7E2A4B430600815518 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA38B7D2A4B430600815518 /* SceneDelegate.swift */; };
 		CEA38B832A4B430600815518 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEA38B812A4B430600815518 /* Main.storyboard */; };
@@ -56,6 +59,16 @@
 		CED13E782A5C678A00BD970A /* UserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CED13E762A5C678A00BD970A /* UserCollectionViewCell.xib */; };
 		CEDCE0342A6979B2004B8D53 /* ReservationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDCE0332A6979B2004B8D53 /* ReservationDetailsViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CE72CA612A7FD51A00B7FF57 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CEA38B702A4B430600815518 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CEA38B772A4B430600815518;
+			remoteInfo = RestoranUposleniciAppIsmarVisca;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		CE1A8D462A61A52800DBB30B /* RequestReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestReviewViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +101,10 @@
 		CE6F32B62A617A03003913A8 /* EmployeesReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesReviewViewController.swift; sourceTree = "<group>"; };
 		CE708DF52A5E96C2003A1B5B /* NewOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewOrderViewController.swift; sourceTree = "<group>"; };
 		CE708DF72A5E991E003A1B5B /* TakenOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakenOrderViewController.swift; sourceTree = "<group>"; };
+		CE72CA5B2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RestoranUposleniciAppIsmarViscaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE72CA5D2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoranUposleniciAppIsmarViscaUITests.swift; sourceTree = "<group>"; };
+		CE72CA5F2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestoranUposleniciAppIsmarViscaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CE9456612A8BA1430034754E /* EmployeeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDetailsViewController.swift; sourceTree = "<group>"; };
 		CEA38B782A4B430600815518 /* RestoranUposleniciAppIsmarVisca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestoranUposleniciAppIsmarVisca.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEA38B7B2A4B430600815518 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEA38B7D2A4B430600815518 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +121,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CE72CA582A7FD51A00B7FF57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEA38B752A4B430600815518 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -147,6 +171,7 @@
 				CE45A01B2A62CCED004785F4 /* FinishedOrderViewController.swift */,
 				CE4D35A42A6952DB00AD0D23 /* ReservationsViewController.swift */,
 				CEDCE0332A6979B2004B8D53 /* ReservationDetailsViewController.swift */,
+				CE9456612A8BA1430034754E /* EmployeeDetailsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -167,10 +192,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CE72CA5C2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CE72CA5D2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests.swift */,
+				CE72CA5F2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITestsLaunchTests.swift */,
+			);
+			path = RestoranUposleniciAppIsmarViscaUITests;
+			sourceTree = "<group>";
+		};
 		CEA38B6F2A4B430600815518 = {
 			isa = PBXGroup;
 			children = (
 				CEA38B7A2A4B430600815518 /* RestoranUposleniciAppIsmarVisca */,
+				CE72CA5C2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests */,
 				CEA38B792A4B430600815518 /* Products */,
 				CE46E8A12A5DAF430011401F /* Frameworks */,
 			);
@@ -180,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				CEA38B782A4B430600815518 /* RestoranUposleniciAppIsmarVisca.app */,
+				CE72CA5B2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -237,6 +273,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CE72CA5A2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE72CA652A7FD51A00B7FF57 /* Build configuration list for PBXNativeTarget "RestoranUposleniciAppIsmarViscaUITests" */;
+			buildPhases = (
+				CE72CA572A7FD51A00B7FF57 /* Sources */,
+				CE72CA582A7FD51A00B7FF57 /* Frameworks */,
+				CE72CA592A7FD51A00B7FF57 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE72CA622A7FD51A00B7FF57 /* PBXTargetDependency */,
+			);
+			name = RestoranUposleniciAppIsmarViscaUITests;
+			productName = RestoranUposleniciAppIsmarViscaUITests;
+			productReference = CE72CA5B2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		CEA38B772A4B430600815518 /* RestoranUposleniciAppIsmarVisca */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CEA38B8C2A4B430800815518 /* Build configuration list for PBXNativeTarget "RestoranUposleniciAppIsmarVisca" */;
@@ -273,6 +327,10 @@
 				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					CE72CA5A2A7FD51A00B7FF57 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = CEA38B772A4B430600815518;
+					};
 					CEA38B772A4B430600815518 = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -298,11 +356,19 @@
 			projectRoot = "";
 			targets = (
 				CEA38B772A4B430600815518 /* RestoranUposleniciAppIsmarVisca */,
+				CE72CA5A2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CE72CA592A7FD51A00B7FF57 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEA38B762A4B430600815518 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,10 +388,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CE72CA572A7FD51A00B7FF57 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE72CA5E2A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITests.swift in Sources */,
+				CE72CA602A7FD51A00B7FF57 /* RestoranUposleniciAppIsmarViscaUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CEA38B742A4B430600815518 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9456622A8BA1430034754E /* EmployeeDetailsViewController.swift in Sources */,
 				CE3038052A5EE71A00BC0635 /* FoodCardView.swift in Sources */,
 				CE1A8D492A61B50B00DBB30B /* Request.swift in Sources */,
 				CE4D35A32A694F2400AD0D23 /* Reservation.swift in Sources */,
@@ -363,6 +439,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CE72CA622A7FD51A00B7FF57 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CEA38B772A4B430600815518 /* RestoranUposleniciAppIsmarVisca */;
+			targetProxy = CE72CA612A7FD51A00B7FF57 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		CEA38B812A4B430600815518 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -383,6 +467,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CE72CA632A7FD51A00B7FF57 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZPURC57K73;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismar.RestoranUposleniciAppIsmarViscaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RestoranUposleniciAppIsmarVisca;
+			};
+			name = Debug;
+		};
+		CE72CA642A7FD51A00B7FF57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZPURC57K73;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ismar.RestoranUposleniciAppIsmarViscaUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RestoranUposleniciAppIsmarVisca;
+			};
+			name = Release;
+		};
 		CEA38B8A2A4B430800815518 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -554,6 +672,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE72CA652A7FD51A00B7FF57 /* Build configuration list for PBXNativeTarget "RestoranUposleniciAppIsmarViscaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE72CA632A7FD51A00B7FF57 /* Debug */,
+				CE72CA642A7FD51A00B7FF57 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CEA38B732A4B430600815518 /* Build configuration list for PBXProject "RestoranUposleniciAppIsmarVisca" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
