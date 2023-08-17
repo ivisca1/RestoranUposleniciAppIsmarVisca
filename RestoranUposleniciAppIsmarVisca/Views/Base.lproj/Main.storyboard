@@ -1843,7 +1843,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CPi-e5-5KN">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPi-e5-5KN">
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QcN-3E-epe">
@@ -1931,7 +1931,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zkS-Pb-emI">
-                                                        <rect key="frame" x="16" y="262" width="361" height="50"/>
+                                                        <rect key="frame" x="16" y="297" width="361" height="50"/>
                                                         <color key="backgroundColor" red="0.42745098040000001" green="0.41960784309999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="gN1-hC-snS"/>
@@ -1945,11 +1945,27 @@
                                                             <action selector="finishOrderPressed:" destination="d0F-Ce-hxZ" eventType="touchUpInside" id="soC-rA-uTw"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Ey-tN-mNG">
+                                                        <rect key="frame" x="16" y="239" width="361" height="50"/>
+                                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="50" id="CWB-dn-Msb"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Pozovi">
+                                                            <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                                                        </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="callButtonPressed:" destination="d0F-Ce-hxZ" eventType="touchUpInside" id="1ba-02-btu"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="WNU-Gt-vya" secondAttribute="trailing" constant="16" id="17w-mx-a61"/>
                                                     <constraint firstItem="Csl-5v-Ygd" firstAttribute="leading" secondItem="9dT-W7-ivx" secondAttribute="leading" constant="16" id="1Ec-f7-Cwy"/>
+                                                    <constraint firstItem="0Ey-tN-mNG" firstAttribute="top" secondItem="vpw-Bs-KLm" secondAttribute="bottom" constant="16" id="3jb-Tg-VWp"/>
                                                     <constraint firstItem="Csl-5v-Ygd" firstAttribute="top" secondItem="CEB-hZ-ovn" secondAttribute="bottom" constant="8" id="9W4-7C-hZ5"/>
                                                     <constraint firstItem="elQ-sw-dcM" firstAttribute="top" secondItem="3Oh-5x-2lK" secondAttribute="bottom" constant="16" id="BEc-sK-HrS"/>
                                                     <constraint firstItem="vpw-Bs-KLm" firstAttribute="leading" secondItem="9dT-W7-ivx" secondAttribute="leading" constant="16" id="HPR-C1-SGZ"/>
@@ -1963,19 +1979,19 @@
                                                     <constraint firstAttribute="trailing" secondItem="C3Y-kp-CMN" secondAttribute="trailing" constant="16" id="StG-pe-4SP"/>
                                                     <constraint firstItem="C3Y-kp-CMN" firstAttribute="centerY" secondItem="elQ-sw-dcM" secondAttribute="centerY" id="Uvf-gS-uIW"/>
                                                     <constraint firstItem="CEB-hZ-ovn" firstAttribute="top" secondItem="elQ-sw-dcM" secondAttribute="bottom" constant="8" id="YHi-jc-tCi"/>
+                                                    <constraint firstItem="zkS-Pb-emI" firstAttribute="top" secondItem="0Ey-tN-mNG" secondAttribute="bottom" constant="8" symbolic="YES" id="ZbM-vb-rID"/>
                                                     <constraint firstAttribute="trailing" secondItem="zkS-Pb-emI" secondAttribute="trailing" constant="16" id="a7Y-p8-59K"/>
-                                                    <constraint firstItem="zkS-Pb-emI" firstAttribute="top" secondItem="3Oh-5x-2lK" secondAttribute="bottom" constant="175" id="b9k-Hu-s0O"/>
                                                     <constraint firstItem="vpw-Bs-KLm" firstAttribute="top" secondItem="Csl-5v-Ygd" secondAttribute="bottom" constant="8" id="dub-hM-B33"/>
                                                     <constraint firstItem="3Oh-5x-2lK" firstAttribute="top" secondItem="9dT-W7-ivx" secondAttribute="top" constant="63" id="exS-rP-uuM"/>
                                                     <constraint firstItem="zkS-Pb-emI" firstAttribute="leading" secondItem="9dT-W7-ivx" secondAttribute="leading" constant="16" id="h1j-4O-hoX"/>
                                                     <constraint firstItem="elQ-sw-dcM" firstAttribute="leading" secondItem="9dT-W7-ivx" secondAttribute="leading" constant="16" id="hyM-AB-IMV"/>
+                                                    <constraint firstItem="0Ey-tN-mNG" firstAttribute="leading" secondItem="9dT-W7-ivx" secondAttribute="leading" constant="16" id="omj-29-34T"/>
+                                                    <constraint firstAttribute="height" constant="445" id="riY-8x-EmX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="0Ey-tN-mNG" secondAttribute="trailing" constant="16" id="wam-No-vUM"/>
                                                     <constraint firstAttribute="trailing" secondItem="0Db-sf-zO6" secondAttribute="trailing" constant="16" id="zTG-qz-Nh3"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="9dT-W7-ivx" secondAttribute="bottom" id="Jt7-V1-WUw"/>
-                                        </constraints>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -2001,6 +2017,7 @@
                     </view>
                     <connections>
                         <outlet property="addressLabel" destination="0Db-sf-zO6" id="y1W-wX-thM"/>
+                        <outlet property="callButton" destination="0Ey-tN-mNG" id="RvE-Zn-RQf"/>
                         <outlet property="detailsView" destination="9dT-W7-ivx" id="uT4-TY-0uY"/>
                         <outlet property="finishOrderButton" destination="zkS-Pb-emI" id="z3M-2k-4M7"/>
                         <outlet property="nameSurnameLabel" destination="C3Y-kp-CMN" id="mcm-H8-y2J"/>
@@ -2439,6 +2456,9 @@
         <image name="yummieLogo" width="261" height="262"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

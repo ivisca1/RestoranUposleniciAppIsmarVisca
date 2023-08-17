@@ -10,6 +10,7 @@ import Toast
 
 class TakenOrderViewController: UIViewController {
 
+    @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var detailsView: UIView!
     @IBOutlet weak var finishOrderButton: UIButton!
     @IBOutlet weak var totalPriceLabel: UILabel!
@@ -26,6 +27,7 @@ class TakenOrderViewController: UIViewController {
         MyVariables.foodManager.delegate = self
         
         finishOrderButton.layer.cornerRadius = 15
+        callButton.layer.cornerRadius = 15
         
         detailsView.clipsToBounds = true
         detailsView.layer.cornerRadius = 70
@@ -36,6 +38,13 @@ class TakenOrderViewController: UIViewController {
         registerCells()
     }
     
+    
+    @IBAction func callButtonPressed(_ sender: UIButton) {
+        let numberUrl = URL(string: "tel://\(phoneNumberLabel.text!)")!
+        if UIApplication.shared.canOpenURL(numberUrl) {
+            UIApplication.shared.open(numberUrl)
+        }
+    }
     
     @IBAction func finishOrderPressed(_ sender: UIButton) {
         sender.alpha = 0.7
